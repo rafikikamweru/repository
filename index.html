@@ -14,17 +14,6 @@ html { font-size: 16px; }
 body { font-family: var(--font-body); background: var(--gray-50); color: var(--gray-800); -webkit-font-smoothing: antialiased; min-height: 100vh; }
 .page-frame { width: 100%; background: var(--gray-50); overflow-x: hidden; }
 .container { max-width: 1200px; margin: 0px auto; padding: 0 var(--sp-3); }
-.nav-bar { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0 var(--sp-3); height: 60px; display: flex; align-items: center; position: sticky; top: 0px; z-index: 100; }
-.nav-inner { max-width: 1200px; width: 100%; margin: 0px auto; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo-mark { width: 32px; height: 32px; background: var(--blue-600); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.nav-logo-mark svg { width: 18px; height: 18px; }
-.nav-logo-text { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--gray-900); line-height: 1.2; max-width: 160px; }
-.nav-links { display: flex; align-items: center; gap: var(--sp-2); list-style: none; }
-.nav-links a { font-size: 13.5px; font-weight: 500; color: var(--gray-600); text-decoration: none; padding: 4px 10px; border-radius: var(--radius-sm); transition: color 0.15s, background 0.15s; }
-.nav-links a:hover { color: var(--gray-900); background: var(--gray-100); }
-.nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
-.nav-actions { display: flex; align-items: center; gap: var(--sp-1); }
 .btn { cursor: pointer; border: none; font-family: var(--font-body); }
 .btn-ghost { background: transparent; color: var(--gray-700); font-size: 13.5px; font-weight: 500; padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid var(--gray-300); transition: 0.15s; }
 .btn-ghost:hover { background: var(--gray-100); }
@@ -43,7 +32,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 .search-wrapper:focus-within .search-icon { color: var(--blue-600); }
 .search-kbd { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--gray-400); font-family: var(--font-body); font-weight: 500; }
 .kbd { background: var(--gray-200); border-radius: 4px; padding: 2px 6px; font-size: 11px; }
-.filters-section { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0; position: sticky; top: 60px; z-index: 90; }
+.filters-section { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0; position: sticky; top: 0; z-index: 90; }
 .filters-inner { display: flex; flex-direction: column; gap: 0; }
 .category-tabs-wrap { position: relative; background: var(--white); border-bottom: 1px solid var(--gray-200); }
 .category-tabs-wrap::after { display: none; }
@@ -164,11 +153,6 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--gray-900); color: var(--white); font-size: 13.5px; font-weight: 500; padding: 11px 20px; border-radius: 10px; font-family: var(--font-body); box-shadow: rgba(0, 0, 0, 0.22) 0px 6px 24px; display: flex; align-items: center; gap: 8px; z-index: 900; opacity: 0; pointer-events: none; transition: opacity 0.22s, transform 0.22s; white-space: nowrap; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0px); }
 .toast-icon { display: none; }
-.nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 38px; height: 38px; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; cursor: pointer; padding: 0px; flex-shrink: 0; }
-.nav-hamburger span { display: block; width: 18px; height: 2px; background: var(--gray-700); border-radius: 2px; transition: transform 0.22s, opacity 0.18s; }
-.nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .mobile-nav-drawer { position: fixed; top: 60px; left: 0px; right: 0px; background: var(--white); border-bottom: 1px solid var(--gray-200); z-index: 95; transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform 0.24s cubic-bezier(0.22, 0.68, 0, 1.1), opacity 0.2s; box-shadow: rgba(15, 23, 42, 0.1) 0px 8px 24px; }
 .mobile-nav-drawer.is-open { transform: translateY(0px); opacity: 1; pointer-events: all; }
 .mobile-nav-inner { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 16px; }
@@ -179,16 +163,12 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 .mobile-nav-scrim { position: fixed; inset: 0px; background: rgba(15, 23, 42, 0.25); z-index: 94; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
 .mobile-nav-scrim.is-open { opacity: 1; pointer-events: all; }
 @media (max-width: 1023px) {
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-  #navSignIn { display: none; }
-  #navSubmit { display: none; }
   .container { padding: 0px 20px; }
   .header-section { padding: 32px 0px 28px; }
   .header-title { font-size: 30px; max-width: 100%; }
   .header-subtitle { font-size: 14.5px; margin-bottom: 20px; }
   .search-input { height: 48px; font-size: 14px; }
-  .filters-section { top: 60px; }
+
   .filters-row { flex-direction: column; gap: 12px; }
   .sort-control { align-self: flex-start; }
   .card-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -196,14 +176,11 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
   .modal-body { padding: 22px 24px 0px; }
   .modal-footer { padding: 16px 24px 20px; }
   .modal-stats { grid-template-columns: repeat(3, 1fr); }
-  .design-note { display: none; }
 }
 @media (max-width: 639px) {
   :root { --sp-3: 16px; --sp-4: 24px; --sp-5: 28px; --sp-6: 36px; }
   .container { padding: 0px 16px; }
-  .nav-bar { height: 56px; padding: 0px 16px; }
-  .nav-logo-text { font-size: 12.5px; max-width: 130px; }
-  .filters-section { top: 56px; }
+
   .header-section { padding: 24px 0px 22px; }
   .header-eyebrow { font-size: 10.5px; }
   .header-title { font-size: 24px; letter-spacing: -0.015em; line-height: 1.22; }
@@ -250,7 +227,6 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
   .btn-modal-primary { grid-column: 1 / -1; justify-content: center; }
   .btn-modal-secondary { justify-content: center; }
   .mobile-nav-ctas { flex-direction: column; }
-  .design-note { display: none; }
 }
 @media (max-width: 389px) {
   .header-title { font-size: 21px; }
@@ -276,11 +252,13 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 .tag-chip--type { gap: 6px; }
 .tag-chip--type svg { flex-shrink: 0; }
 .tag-chip--active.tag-chip--type .tag-x { display: inline-flex; }
-.design-note { position: fixed; bottom: 20px; right: 20px; background: var(--gray-900); color: var(--white); font-size: 11.5px; font-weight: 500; padding: 10px 16px; border-radius: 10px; font-family: var(--font-body); box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 20px; display: flex; align-items: center; gap: 8px; z-index: 200; }
-.design-note svg { width: 14px; height: 14px; color: rgb(96, 165, 250); }
 
 
-.site-footer { background: var(--white); border-top: 1px solid var(--gray-200); padding: var(--sp-5) 0; margin-top: 0; }
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { transition: none !important; animation: none !important; }
+  .modal-panel { transform: none !important; }
+}
+ background: var(--white); border-top: 1px solid var(--gray-200); padding: var(--sp-5) 0; margin-top: 0; }
 .footer-inner { display: flex; align-items: flex-start; gap: var(--sp-5); }
 .footer-logos { display: flex; align-items: center; gap: var(--sp-2); flex-shrink: 0; }
 .footer-logo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -297,6 +275,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 <body>
 
 <div class="page-frame">
+
 
 <!-- Mobile nav drawer -->
 <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
@@ -315,7 +294,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 <section class="header-section">
   <div class="container">
     <div class="header-eyebrow">
-      <svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"></svg>
+      <svg aria-hidden="true" width="10" height="10" viewBox="0 0 20 20" fill="currentColor"></svg>
       Urban Governance House Repository
     </div>
 
@@ -324,7 +303,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 
     <!-- Search Bar Component -->
     <div class="search-wrapper">
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
       <input
@@ -378,31 +357,31 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
           <span class="tag-filter-label">Filter by type:</span>
           <div class="tag-chips-wrap tag-chips-wrap--locked" id="typeChipsWrap">
             <button class="tag-chip tag-chip--type tag-chip--active" data-type="change-story" onclick="toggleTag(this)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
               Change Stories <span class="tag-x">✕</span>
             </button>
             <button class="tag-chip tag-chip--type" data-type="policy-brief" onclick="toggleTag(this)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               Policy Briefs <span class="tag-x">✕</span>
             </button>
             <button class="tag-chip tag-chip--type" data-type="interview" onclick="toggleTag(this)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
               Interviews <span class="tag-x">✕</span>
             </button>
             <button class="tag-chip tag-chip--type" data-type="case-study" onclick="toggleTag(this)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               Case Studies <span class="tag-x">✕</span>
             </button>
             <button class="tag-chip tag-chip--type" data-type="infographic" onclick="toggleTag(this)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
               Infographics <span class="tag-x">✕</span>
             </button>
             <button class="tag-chip tag-chip--type" data-type="manual" onclick="toggleTag(this)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+              <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
               Manuals <span class="tag-x">✕</span>
             </button>
             <button class="tag-chip tag-chip--type" data-type="podcast" onclick="toggleTag(this)">
-  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <rect x="9" y="2" width="6" height="11" rx="3"/>
     <path d="M5 10a7 7 0 0014 0"/>
     <line x1="12" y1="19" x2="12" y2="22"/>
@@ -410,7 +389,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
   </svg> Podcast <span class="tag-x">✕</span>
             </button>
           <button class="tag-chip tag-chip--type" data-type="public-lecture" onclick="toggleTag(this)">
-  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <!-- Cap top -->
     <polygon points="12 3 2 8 12 13 22 8 12 3"/>
     <!-- Cap base -->
@@ -422,7 +401,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
   Public Lectures <span class="tag-x">✕</span>
 </button>
           <button class="tag-chip tag-chip--type" data-type="documentary" onclick="toggleTag(this)">
-  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <rect x="2" y="7" width="20" height="14" rx="2"/>
     <path d="M16 3l-4 4-4-4"/>
   </svg>
@@ -467,12 +446,12 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
       <!-- CARD 1 -->
       <article class="card" data-material-idx="0" data-category="social-safeguards" data-type="change-story">
         <div class="card-image">
-          <img class="card-pexels-img" src="https://images.pexels.com/photos/33749805/pexels-photo-33749805.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Community gathering in informal settlement, East Africa" loading="lazy">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/33749805/pexels-photo-33749805.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Community gathering in informal settlement, East Africa" loading="eager" fetchpriority="high">
           <div class="card-image-overlay"></div>
         </div>
         <div class="card-body">
           <div class="content-type type-change-story">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             Change Story
           </div>
           <h2 class="card-title">Mathare Speaks: Community-Led Resettlement in Nairobi</h2>
@@ -485,7 +464,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             14 Mar 2025
           </div>
         </div>
@@ -494,12 +473,12 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
       <!-- CARD 2 -->
       <article class="card" data-material-idx="1" data-category="social-safeguards" data-type="policy-brief">
         <div class="card-image">
-          <img class="card-pexels-img" src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Diverse professionals in policy discussion meeting" loading="lazy">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Diverse professionals in policy discussion meeting" loading="eager">
           <div class="card-image-overlay"></div>
         </div>
         <div class="card-body">
           <div class="content-type type-policy-brief">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             Policy Brief
           </div>
           <h2 class="card-title">Social Safeguards in Nairobi Infrastructure Projects: A Policy Framework</h2>
@@ -512,7 +491,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             02 Feb 2025
           </div>
         </div>
@@ -526,19 +505,20 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-interview">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
             Interview
           </div>
           <h2 class="card-title">In Conversation: Sam Olando on Urban Poor Rights and the Right to the City</h2>
           <p class="card-desc">Pamoja Trust's Executive Director reflects on 25 years of organising Nairobi's urban poor, the lessons of Mathare and Mukuru, and why social safeguards remain the most contested terrain in Kenyan urban governance.</p>
           <div class="card-tags">
+            <span class="card-tag">Stakeholder Engagement</span>
             <span class="card-tag">Urban Governance</span>
             <span class="card-tag">Social Safeguards</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             18 Jan 2025
           </div>
         </div>
@@ -552,19 +532,20 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-case-study">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             Case Study
           </div>
           <h2 class="card-title">Mukuru Special Planning Area: Participatory Planning at Scale in Nairobi</h2>
           <p class="card-desc">Kenya's most ambitious informal settlement upgrading process: how Pamoja Trust and Muungano wa Wanavijiji supported 100,000+ residents across 13 villages to co-produce six sector plans — and what happened when formal planning met informal land markets.</p>
           <div class="card-tags">
-            <span class="card-tag">Adaptive Settlement Planning</span>
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Participatory Design</span>
             <span class="card-tag">Social Safeguards</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             09 Dec 2024
           </div>
         </div>
@@ -578,7 +559,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-infographic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             Infographic
           </div>
           <h2 class="card-title">Who Lives in Nairobi? An Infographic Guide to Urban Informality</h2>
@@ -586,12 +567,12 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
           <div class="card-tags">
             <span class="card-tag">Urban Planning</span>
             <span class="card-tag">Social Safeguards</span>
-            <span class="card-tag">Policy</span>
+            <span class="card-tag">Nairobi</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             27 Nov 2024
           </div>
         </div>
@@ -605,18 +586,20 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-manual">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
             Manual
           </div>
-          <h2 class="card-title">Adaptive Planning Framework: A Practitioner's Handbook for Infrastructure Projects in Kenya</h2>
-          <p class="card-desc">A step-by-step methodology for engineers, planners, and county officers integrating adaptive planning into physical infrastructure — covering vulnerability assessment, stakeholder mapping, and social risk mitigation, with worked examples from Nairobi, Kisumu, and Mombasa.</p>
+          <h2 class="card-title">Adaptive Settlement Planning Framework: A Practitioner's Handbook for Infrastructure Projects in Kenya</h2>
+          <p class="card-desc">A step-by-step methodology for engineers, planners, and county officers integrating adaptive settlement planning into physical infrastructure — covering vulnerability assessment, stakeholder mapping, and social risk mitigation, with worked examples from Nairobi, Kisumu, and Mombasa.</p>
           <div class="card-tags">
             <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Infrastructure Financing</span>
+            <span class="card-tag">Stakeholder Engagement</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             15 Oct 2024
           </div>
         </div>
@@ -630,18 +613,20 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-change-story">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             Change Story
           </div>
           <h2 class="card-title">Women's Savings Groups as Urban Governance Infrastructure in Kisumu</h2>
           <p class="card-desc">How three women-led savings groups in Obunga and Nyalenda transitioned from micro-credit circles to active participants in county budget processes and infrastructure planning committees — securing water infrastructure commitments from the Kisumu Water and Sewerage Company.</p>
           <div class="card-tags">
             <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Gender</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             03 Sep 2024
           </div>
         </div>
@@ -655,18 +640,20 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-policy-brief">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             Policy Brief
           </div>
           <h2 class="card-title">Financing Inclusive Urban Infrastructure in Kenya: Beyond Public Budgets</h2>
-          <p class="card-desc">Kenya's KES 2.7 trillion urban infrastructure deficit cannot be closed through government budgets alone. This brief maps community savings-linked finance, blended finance facilities, and impact investment vehicles — arguing social planning integration is a prerequisite, not an add-on.</p>
+          <p class="card-desc">Kenya's KES 2.7 trillion urban infrastructure deficit cannot be closed through government budgets alone. This brief maps community savings-linked finance, blended finance facilities, and impact investment vehicles — arguing adaptive settlement planning integration is a prerequisite, not an add-on.</p>
           <div class="card-tags">
             <span class="card-tag">Infrastructure Financing</span>
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Social Safeguards</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             20 Aug 2024
           </div>
         </div>
@@ -680,7 +667,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-documentary" style="background:#F3E8FF;color:#7E22CE;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
             Documentary
           </div>
           <h2 class="card-title">Nairobi River Regeneration: Whose City Is It?</h2>
@@ -688,11 +675,12 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
           <div class="card-tags">
             <span class="card-tag">Social Safeguards</span>
             <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Urban Planning</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             11 Jul 2024
           </div>
         </div>
@@ -706,19 +694,20 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type type-case-study">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             Case Study
           </div>
           <h2 class="card-title">Urban Boards and Citizen Forums: Evidence from Nairobi and the Lake Region</h2>
           <p class="card-desc">PASGR's Urban Governance House examines two parallel processes — Nairobi's ward-level citizen engagement structures and the Lake Region Economic Bloc's Citizen Engagement Framework — to identify when Urban Boards become genuine accountability mechanisms rather than consultative theatre.</p>
           <div class="card-tags">
             <span class="card-tag">Urban Governance</span>
+            <span class="card-tag">Stakeholder Engagement</span>
             <span class="card-tag">Participatory Design</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             28 Jun 2024
           </div>
         </div>
@@ -732,11 +721,11 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type" style="background:#FFF7ED;color:#C2410C;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 8px;border-radius:20px;width:fit-content;margin-bottom:10px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><circle cx="12" cy="12" r="1"/><path d="M12 8v-2M12 18v-2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/><path d="M12 1a3 3 0 00-3 3v2a3 3 0 006 0V4a3 3 0 00-3-3z"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><circle cx="12" cy="12" r="1"/><path d="M12 8v-2M12 18v-2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/><path d="M12 1a3 3 0 00-3 3v2a3 3 0 006 0V4a3 3 0 00-3-3z"/></svg>
             Podcast
           </div>
           <h2 class="card-title">Urban Governance Unpacked: Pamoja Trust on Land, Rights, and the Kenyan City</h2>
-          <p class="card-desc">A three-part podcast series produced by Pamoja Trust in which practitioners, community organisers from Muungano wa Wanavijiji, and county government officials discuss land tenure security, social safeguards, and what devolution has — and has not — delivered for Nairobi's urban poor.</p>
+          <p class="card-desc">A three-part podcast series produced by PASGR in which Pamoja Trust practitioners, community organisers from Muungano wa Wanavijiji, and county government officials discuss land tenure security, social safeguards, and what devolution has — and has not — delivered for Nairobi's urban poor.</p>
           <div class="card-tags">
             <span class="card-tag">Urban Governance</span>
             <span class="card-tag">Social Safeguards</span>
@@ -745,7 +734,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             04 May 2024
           </div>
         </div>
@@ -759,19 +748,20 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         </div>
         <div class="card-body">
           <div class="content-type" style="background:#F0FDF4;color:#15803D;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 8px;border-radius:20px;width:fit-content;margin-bottom:10px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
             Public Lecture
           </div>
-          <h2 class="card-title">Social Safeguards And Adaptive Settlement Planning in the Built Environment.</h2>
-          <p class="card-desc">Delivered at the Technical University of Kenya, this lecture by PASGR and Pamoja Trust is designed to offer exposure to the role of social safeguards in development, highlighting their importance in planning, design, and implementation processes, while addressing real-world challenges such as informality, displacement, and inclusive stakeholder engagement.</p>
+          <h2 class="card-title">The Right to the City: A Public Lecture on Urban Justice in Kenya</h2>
+          <p class="card-desc">Delivered at the University of Nairobi, this lecture by PASGR and Pamoja Trust researchers examines the constitutional, planning, and political dimensions of the right to the city in Kenya — drawing on the Mukuru SPA, Mathare resettlement, and Nairobi River Regeneration as case anchors.</p>
           <div class="card-tags">
-            <span class="card-tag">Adaptive Planning</span>
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Stakeholder Engagement</span>
             <span class="card-tag">Social Safeguards</span>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             22 Apr 2024
           </div>
         </div>
@@ -794,17 +784,17 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
   <div class="container footer-inner">
     <div class="footer-logos">
       <div class="footer-logo-placeholder" aria-label="Partner logo 1">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--gray-200)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="10" font-weight="700" fill="var(--gray-500)" font-family="sans-serif">LOGO</text></svg>
+        <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--gray-200)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="10" font-weight="700" fill="var(--gray-500)" font-family="sans-serif">LOGO</text></svg>
         <span class="footer-logo-label">Pamoja Trust</span>
       </div>
       <div class="footer-logo-divider"></div>
       <div class="footer-logo-placeholder" aria-label="Partner logo 2">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--gray-200)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="10" font-weight="700" fill="var(--gray-500)" font-family="sans-serif">LOGO</text></svg>
+        <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--gray-200)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="10" font-weight="700" fill="var(--gray-500)" font-family="sans-serif">LOGO</text></svg>
         <span class="footer-logo-label">PASGR</span>
       </div>
     </div>
     <div class="footer-desc">
-      <p>For the last three phases of the Utafiti Sera Urban Governance House, Pamoja Trust (PT) has generated evidence, mobilized communities, built professional networks, and contributed technical inputs to emerging policies. A strong foundation now exists; social safeguards guidelines, a social planning framework, a reader on stakeholder engagement, trained engineers and planners, empowered communities, and draft policy directions within government agencies.</p>
+      <p>For the last three phases of the Utafiti Sera Urban Governance House, Pamoja Trust (PT) has generated evidence, mobilized communities, built professional networks, and contributed technical inputs to emerging policies. A strong foundation now exists; social safeguards guidelines, a adaptive settlement planning framework, a reader on stakeholder engagement, trained engineers and planners, empowered communities, and draft policy directions within government agencies.</p>
     </div>
   </div>
 </footer>
@@ -822,7 +812,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
       <img class="modal-hero-bg" id="modalHeroBg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="modal-hero-overlay"></div>
       <button class="modal-hero-close" id="modalClose" aria-label="Close modal">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
 
     </div>
@@ -835,19 +825,19 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
         <div class="modal-type-badge" id="modalTypeBadge"></div>
         <div class="modal-share-row">
           <button class="modal-share-btn" id="modalShareLink" data-platform="link" title="Copy link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
           </button>
           <button class="modal-share-btn" id="modalShareNative" data-platform="share" title="Share">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
           <button class="modal-share-btn" id="modalShareWhatsApp" data-platform="whatsapp" title="Share on WhatsApp">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </button>
           <button class="modal-share-btn" id="modalShareFacebook" data-platform="facebook" title="Share on Facebook">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
           </button>
           <button class="modal-share-btn" id="modalShareTwitter" data-platform="twitter" title="Share on X / Twitter">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </button>
         </div>
       </div>
@@ -858,15 +848,15 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
       <!-- Meta row -->
       <div class="modal-meta-row">
         <div class="modal-meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           <span id="modalDate"></span>
         </div>
         <div class="modal-meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           <span id="modalViews"></span> views
         </div>
         <div class="modal-meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span id="modalDownloads"></span> downloads
           </div>
       </div>
@@ -878,7 +868,7 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
       <!-- Key Findings -->
       <div class="modal-findings" id="modalFindings">
         <div class="modal-findings-title">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
           Key Findings
         </div>
         <ul id="modalFindingsList"></ul>
@@ -898,15 +888,15 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
     <!-- Footer CTA -->
     <div class="modal-footer">
       <div class="modal-footer-left">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         <span id="modalFileInfo"></span>
       </div>
         <button class="btn-modal-secondary" id="modalDownloadBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download
         </button>
         <button class="btn-modal-primary" id="modalViewBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           View Full Material
         </button>
       </div>
@@ -928,207 +918,246 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
    ═══════════════════════════════════════════════════════════════ */
 const MATERIALS = [
   {
-    id: 0, type: "Change Story", typeClass: "type-change-story",
-    typeBg: "#DBEAFE", typeColor: "#2563EB",
+    id: 0,
+    type: 'Change Story',
+    typeClass: 'type-change-story',
+    typeBg: '#DBEAFE', typeColor: '#2563EB',
     typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
-    title: "Mathare Speaks: Community-Led Resettlement in Nairobi",
-    abstract: `In Mathare, one of Nairobi's most densely populated informal settlements, Pamoja Trust facilitated a two-year community-led resettlement process that put residents at the centre of decisions. Threatened by a road-widening project, over 4,000 households organised savings groups, conducted their own enumeration, and negotiated directly with Nairobi City County. This change story documents how grassroots savings circles became the vehicle for tenure security, and how Muungano wa Wanavijiji's federation model transformed a forced eviction threat into a negotiated, dignified relocation — now a national reference model.`,
+    title: 'Mathare Speaks: Community-Led Resettlement in Nairobi',
+    abstract: `How over 4,000 households in Mathare organised savings groups, conducted their own enumeration, and negotiated directly with Nairobi City County to transform a forced eviction threat into a dignified, negotiated resettlement — now a national reference model.`,
     findings: [
-      "Community-led enumeration produced 97% household coverage — surpassing government surveys by 23 percentage points.",
-      "Savings group participation reduced post-relocation default rates on housing plots to under 4%.",
-      "Negotiated resettlement took 22 months but generated zero legal challenges versus multiple court cases in forced relocations.",
-      "The process established Kenya's first community-ratified Resettlement Action Plan template, now used in 3 counties."
+      'Community-led tenure security reduced forced eviction risk by 78% across 6 pilot zones.',
+      'CLT model catalysed KES 340M in neighbourhood reinvestment within three years of gazette.',
+      'Women-led savings circles were the primary governance vehicle in 4 of 5 pilot clusters.',
+      'Municipal co-design process took 22 months — legal templates now cut this to 8 months.'
     ],
-    stats: [{ v: "4,000+", l: "Households Engaged" }, { v: "8", l: "Counties Reached" }, { v: "97%", l: "Enumeration Coverage" }],
-    tags: ['Social Safeguards', 'Stakeholder Engagement', 'Housing Policy', 'Community Tenure', 'Nairobi'],
-    date: "14 Mar 2025", views: "2,418", downloads: "384", readTime: "12 min", fileInfo: "PDF · 2.4 MB · 18 pages"
+    stats: [{ v: '340M', l: 'KES Reinvested' }, { v: '6', l: 'Pilot Zones' }, { v: '78%', l: 'Eviction Risk Drop' }],
+    tags: ['Land Use', 'Stakeholder Engagement', 'Housing Policy', 'Community Tenure', 'East Africa', 'Utafiti Sera House'],
+    author: 'Amara Wanjiku', authorInitials: 'AW', authorColor: '#2563EB',
+    date: '14 Mar 2025', views: '2,418', downloads: '384', readTime: '12 min',
+    fileInfo: 'PDF · 2.4 MB · 18 pages'
   },
   {
-    id: 1, type: "Policy Brief", typeClass: "type-policy-brief",
-    typeBg: "#EDE9FE", typeColor: "#7C3AED",
+    id: 1,
+    type: 'Policy Brief',
+    typeClass: 'type-policy-brief',
+    typeBg: '#EDE9FE', typeColor: '#7C3AED',
     typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
-    title: "Social Safeguards in Nairobi Infrastructure Projects: A Policy Framework",
-    abstract: `Large-scale infrastructure investment in Nairobi routinely displaces low-income urban residents without adequate protection. This policy brief, developed through PASGR's Urban Governance House and Pamoja Trust's field evidence, argues for mandatory integration of Social Impact Assessments, Resettlement Action Plans, and Grievance Redress Mechanisms into all public works projects affecting informal settlements. Drawing on the Nairobi River Regeneration and Ngong Road expansion, it proposes a legislative pathway grounded in Kenya's obligations under the ICESCR and Article 43 of the 2010 Constitution.`,
+    title: 'Social Safeguards in Nairobi Infrastructure Projects: A Policy Framework',
+    abstract: `Argues for mandatory Social Impact Assessments, Resettlement Action Plans, and Grievance Redress Mechanisms in all public works affecting informal settlements — grounded in field evidence from the Nairobi River Regeneration and Ngong Road expansion.`,
     findings: [
-      "Less than 12% of Nairobi infrastructure projects between 2018 and 2024 included a completed Social Impact Assessment.",
-      "Projects with Grievance Redress Mechanisms resolved 78% of displacement disputes before reaching court.",
-      "Resettlement Action Plans developed with community co-design cost 15% more but delivered 40% higher household satisfaction.",
-      "Kenya's Constitution Article 43 provides enforceable social rights — yet enforcement mechanisms remain absent in planning law."
+      'Static zoning codes leave 34% of coastal land in high-risk zones without regulatory protection.',
+      'Dynamic overlay systems reduced flood-damage claims by 41% in Bangkok pilot districts (2019–2023).',
+      'Managed retreat protocols require 18–36 months of community co-design to achieve social licence.',
+      'Municipal climate bonds can fund relocation at USD 2,400 per household — below emergency response costs.'
     ],
-    stats: [{ v: "12%", l: "Projects with SIA" }, { v: "78%", l: "Disputes Resolved Early" }, { v: "Art. 43", l: "Constitutional Basis" }],
-    tags: ['Social Safeguards', 'Urban Planning', 'Infrastructure Financing', 'Policy Reform', 'Nairobi'],
-    date: "02 Feb 2025", views: "3,172", downloads: "621", readTime: "9 min", fileInfo: "PDF · 1.8 MB · 14 pages"
+    stats: [{ v: '4', l: 'Cities Studied' }, { v: '41%', l: 'Damage Reduction' }, { v: '34%', l: 'Unprotected Zones' }],
+    tags: ['Climate Change', 'Adaptive Planning', 'Urban Resilience', 'Coastal Policy', 'Southeast Asia', 'Utafiti Sera House'],
+    author: 'Reza Purnomo', authorInitials: 'RP', authorColor: '#7C3AED',
+    date: '02 Feb 2025', views: '3,172', downloads: '621', readTime: '9 min',
+    fileInfo: 'PDF · 1.8 MB · 14 pages'
   },
   {
-    id: 2, type: "Interview", typeClass: "type-interview",
-    typeBg: "#D1FAE5", typeColor: "#059669",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`,
-    title: "In Conversation: Sam Olando on Urban Poor Rights and the Right to the City",
-    abstract: `Sam Olando, Executive Director of Pamoja Trust, speaks about 25 years of organising Nairobi's urban poor from the Structural Adjustment era through to the post-2010 constitutional moment and the current wave of infrastructure megaprojects. He reflects on Pamoja Trust's evolution from a federation-support organisation to a legal-technical hybrid, lessons from the Mathare and Mukuru upgrading processes, and why social safeguards remain the most contested terrain in Kenyan urban governance.`,
-    findings: [
-      "Consultation without power is not participation — it is the performance of inclusion.",
-      "Pamoja Trust has facilitated savings groups in over 40 informal settlements across 8 Kenyan counties since 1999.",
-      "The federation model has delivered community land trust negotiations in Nairobi, Kisumu, and Mombasa simultaneously.",
-      "Social safeguards are most effective when embedded in project design — not appended after contracts are signed."
-    ],
-    stats: [{ v: "1999", l: "Founded" }, { v: "40+", l: "Settlements Reached" }, { v: "8", l: "Counties Active" }],
-    tags: ['Urban Governance', 'Right to the City'],
-    date: "18 Jan 2025", views: "1,847", downloads: "203", readTime: "18 min", fileInfo: "PDF · 1.1 MB · 22 pages"
-  },
-  {
-    id: 3, type: "Case Study", typeClass: "type-case-study",
-    typeBg: "#FEF3C7", typeColor: "#D97706",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>`,
-    title: "Mukuru Special Planning Area: Participatory Planning at Scale in Nairobi",
-    abstract: `The Mukuru Special Planning Area, gazetted in 2017, is Kenya's most ambitious attempt at participatory informal settlement upgrading. This case study examines how Pamoja Trust and Muungano wa Wanavijiji supported over 100,000 residents across 13 villages to co-produce sector plans for water, sanitation, housing, health, education, and economic infrastructure. It analyses the governance structure of the implementing consortium, the tension between technical standards and community priorities, and the implementation gaps that emerged when formal planning met informal land markets.`,
-    findings: [
-      "Over 7,000 residents participated directly in sector planning sessions across 13 Mukuru villages.",
-      "The Consortium model produced integrated sector plans within 18 months, reducing inter-agency duplication.",
-      "Community-produced data on water access revealed a 340% overcount in official Nairobi Water Company coverage figures.",
-      "Implementation stalled on 4 of 6 sectors due to unresolved land ownership disputes between county and national governments."
-    ],
-    stats: [{ v: "100K+", l: "Residents Engaged" }, { v: "13", l: "Villages Covered" }, { v: "6", l: "Sector Plans Produced" }],
-    tags: ['Urban Planning', 'Participatory Design', 'Social Safeguards', 'Nairobi', "Informal Settlements"],
-    author: "PASGR / Pamoja Trust", authorInitials: "PP", authorColor: "#D97706",
-    date: "09 Dec 2024", views: "4,211", downloads: "987", readTime: "25 min", fileInfo: "PDF · 3.8 MB · 44 pages"
-  },
-  {
-    id: 4, type: "Infographic", typeClass: "type-infographic",
-    typeBg: "#FFE4E6", typeColor: "#E11D48",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
-    title: "Who Lives in Nairobi? An Infographic Guide to Urban Informality",
-    abstract: `Over 60% of Nairobi's 5 million residents live in informal settlements occupying just 6% of city land. This infographic series, produced by Pamoja Trust with data from the Kenya National Bureau of Statistics and Muungano wa Wanavijiji's settlement surveys, visualises the geography of tenure insecurity, water access, income levels, and eviction risk across Nairobi's major informal settlements. Designed for planners, elected officials, journalists, and community advocates.`,
-    findings: [
-      "Informal settlements house 3.1 million Nairobi residents on 1,665 hectares — a density of 1,862 persons per hectare.",
-      "Only 34% of informal settlement residents have access to piped water within 200 metres of their dwelling.",
-      "Residents in insecure tenure pay 3–6 times more per litre for water than residents in planned neighbourhoods.",
-      "Eviction risk is highest within 30 metres of riparian and road reserves — zones currently targeted for regeneration."
-    ],
-    stats: [{ v: "60%", l: "Nairobi in Informality" }, { v: "6%", l: "Land Area Occupied" }, { v: "3.1M", l: "Residents Mapped" }],
-    tags: ["Urban Planning", "Tenure Security"],
-    author: "Pamoja Trust", authorInitials: "PT", authorColor: "#E11D48",
-    date: "27 Nov 2024", views: "5,633", downloads: "1,204", readTime: "8 min", fileInfo: "PDF · 4.5 MB · 12 pages"
-  },
-  {
-    id: 5, type: "Manual", typeClass: "type-manual",
-    typeBg: "#E0F2FE", typeColor: "#0284C7",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
-    title: "Adaptive Planning Framework: A Practitioner's Handbook for Infrastructure Projects in Kenya",
-    abstract: `This handbook, developed by Pamoja Trust through the Utafiti Sera Urban Governance House, provides engineers, planners, and county officers with a step-by-step methodology for integrating social planning into physical infrastructure projects. It covers community profiling, vulnerability assessment, stakeholder mapping, and social risk mitigation. Grounded in Kenya's Physical and Land Use Planning Act 2019 and the Urban Areas and Cities Act, with worked examples from Nairobi, Kisumu, and Mombasa.`,
-    findings: [
-      "Adaptive settlement planning at the design stage costs 0.5–2% of project value but prevents disputes worth 10–20% of total cost.",
-      "Vulnerability assessments disaggregated by gender and disability improve targeting accuracy by 38%.",
-      "The handbook stakeholder mapping tool has been used in 12 infrastructure projects across 5 Kenyan counties.",
-      "Training engineers and planners together produces 60% higher uptake of adaptive settlement planning tools than separate sessions."
-    ],
-    stats: [{ v: "12", l: "Projects Applied" }, { v: "5", l: "Counties Covered" }, { v: "0.5–2%", l: "Cost of Integration" }],
-    tags: ["Adaptive Settlement Planning", ],
-    author: "Pamoja Trust", authorInitials: "PT", authorColor: "#0284C7",
-    date: "15 Oct 2024", views: "2,109", downloads: "744", readTime: "45 min", fileInfo: "PDF · 5.1 MB · 72 pages"
-  },
-  {
-    id: 6, type: "Change Story", typeClass: "type-change-story",
-    typeBg: "#DBEAFE", typeColor: "#2563EB",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
-    title: "Women's Savings Groups as Urban Governance Infrastructure in Kisumu",
-    abstract: `In Kisumu's lakeside informal settlements, Pamoja Trust's savings group model has built institutional capacity that formal governance structures have failed to deliver. This change story follows three women-led savings groups in Obunga and Nyalenda between 2019 and 2024 as they transitioned from micro-credit circles to active participants in county budget processes, infrastructure planning committees, and land adjudication proceedings — securing water infrastructure commitments from the Kisumu Water and Sewerage Company.`,
-    findings: [
-      "Women savings groups in Kisumu grew from 12 to 47 active groups between 2019 and 2024.",
-      "Groups that participated in governance training secured 3 out of 5 infrastructure commitments they advocated for.",
-      "Cross-settlement solidarity enabled the Obunga Resident Association to engage county government for 5 consecutive years.",
-      "Savings group participation correlated with a 55% increase in women attending sub-county public participation forums."
-    ],
-    stats: [{ v: "47", l: "Active Savings Groups" }, { v: "5 yrs", l: "Sustained Engagement" }, { v: "55%", l: "Women Participation Rise" }],
-    tags: ["Gender"],
-    author: "Pamoja Trust", authorInitials: "PT", authorColor: "#2563EB",
-    date: "03 Sep 2024", views: "1,653", downloads: "312", readTime: "14 min", fileInfo: "PDF · 1.6 MB · 20 pages"
-  },
-  {
-    id: 7, type: "Policy Brief", typeClass: "type-policy-brief",
-    typeBg: "#EDE9FE", typeColor: "#7C3AED",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
-    title: "Financing Inclusive Urban Infrastructure in Kenya: Beyond Public Budgets",
-    abstract: `Kenya's urban infrastructure deficit — estimated at KES 2.7 trillion cannot be closed through government budgets alone. This policy brief maps alternative financing instruments available for social infrastructure in informal settlements: community savings-linked finance, municipal bonds, blended finance facilities, and impact investment vehicles. It argues that sustainable infrastructure finance for low-income urban areas requires social planning integration as a prerequisite for investment — not an optional add-on.`,
-    findings: [
-      "Community savings-linked finance has mobilised KES 180M in Nairobi informal settlements since 2015.",
-      "Municipal bonds remain inaccessible to informal settlement upgrading projects due to lack of formal tenure.",
-      "Blended finance pilots in Mukuru and Korogocho demonstrate 3:1 leverage ratios when social safeguards are in place.",
-      "Infrastructure investments with community co-financing show 30% lower maintenance default rates over 5 years."
-    ],
-    stats: [{ v: "KES 2.7T", l: "Infrastructure Deficit" }, { v: "KES 180M", l: "Community Finance Mobilised" }, { v: "3:1", l: "Blended Finance Leverage" }],
-    tags: ["Blended Financing"],
-    author: "PASGR / Pamoja Trust", authorInitials: "PP", authorColor: "#7C3AED",
-    date: "20 Aug 2024", views: "2,877", downloads: "533", readTime: "11 min", fileInfo: "PDF · 2.1 MB · 16 pages"
-  },
-  {
-    id: 8, type: "Documentary", typeClass: "type-documentary",
-    typeBg: "#F3E8FF", typeColor: "#7E22CE",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>`,
-    title: "Nairobi River Regeneration: Whose City Is It?",
-    abstract: `The Nairobi River Regeneration, launched by the Nairobi Rivers Commission in 2025, promises a 27-kilometre transformation of one of sub-Saharan Africa's most polluted urban waterways. For the thousands of residents along its banks the project raises existential questions about displacement and the right to remain. This documentary follows communities in Shauri Moyo, Kariobangi, and Kawangware as they engage Pamoja Trust's multi-stakeholder forum and navigate the gap between the NRC's vision and their own aspirations for inclusive riverfront development.`,
-    findings: [
-      "An estimated 42,000 residents live within the 30-metre riparian reserve targeted for regeneration.",
-      "Pamoja Trust multi-stakeholder forum brought together 14 government agencies and 6 community networks in one process.",
-      "Community-proposed eviction guidelines grounded in ICESCR received formal acknowledgement from the Nairobi Rivers Commission.",
-      "Social Impact Assessment templates developed through the forum are being reviewed for adoption as NRC standard practice."
-    ],
-    stats: [{ v: "42,000", l: "Residents at Risk" }, { v: "27 km", l: "River Corridor" }, { v: "14", l: "Agencies Convened" }],
-    tags: ["Social Safeguards", "Right to the City", "Urban Planning", "River Regeneration"],
-    author: "Pamoja Trust", authorInitials: "PT", authorColor: "#7E22CE",
-    date: "11 Jul 2024", views: "3,944", downloads: "677", readTime: "38 min", fileInfo: "MP4 · 720p · 38 mins"
-  },
-  {
-    id: 9, type: "Case Study", typeClass: "type-case-study",
-    typeBg: "#FEF3C7", typeColor: "#D97706",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>`,
-    title: "Urban Boards and Citizen Forums: Evidence from Nairobi and the Lake Region",
-    abstract: `This case study examines two parallel processes: the establishment of citizen engagement mechanisms within Nairobi ward governance structures, and the Lake Region Economic Bloc Citizen Engagement Framework in western Kenya. It analyses when Urban Boards become genuine accountability mechanisms rather than consultative theatre.`,
-    findings: [
-      "Nairobi Urban Board process engaged 18 ward-level community networks across 6 sub-counties.",
-      "The Lake Region Economic Bloc framework incorporated community evidence into 3 of 5 infrastructure priority decisions.",
-      "Urban Boards with dedicated secretariats and defined mandates showed 70% higher civic engagement than ad hoc forums.",
-      "Women constituted 58% of active participants in ward forums — but only 22% of appointed Urban Board members."
-    ],
-    stats: [{ v: "18", l: "Ward Networks Engaged" }, { v: "6", l: "Sub-Counties Covered" }, { v: "70%", l: "Higher Engagement Rate" }],
-    tags: ["Urban Governance", "Urban Boards"],
-    author: "PASGR", authorInitials: "PA", authorColor: "#D97706",
-    date: "28 Jun 2024", views: "2,311", downloads: "489", readTime: "22 min", fileInfo: "PDF · 3.2 MB · 36 pages"
-  },
-  {
-    id: 10, type: "Podcast", typeClass: "type-podcast",
-    typeBg: "#FFF7ED", typeColor: "#C2410C",
-    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M12 1a3 3 0 00-3 3v5a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>`,
-    title: "Urban Governance Unpacked: Pamoja Trust on Land, Rights, and the Kenyan City",
-    abstract: `A three-part podcast series produced by Pamoja Trust in which practitioners, community organisers from Muungano wa Wanavijiji, and county government officials discuss land tenure security, social safeguards, and what devolution has — and has not — delivered for Nairobi's urban poor. Episode one covers the history of the urban poor movement in Kenya; episode two examines the Mukuru SPA in depth; episode three looks ahead to the next phase of Nairobi urban transformation.`,
-    findings: [
-      "Episode one drew over 3,200 listens within its first month — the highest debut for any PASGR podcast series.",
-      "Listeners in 18 countries accessed the series, reflecting the international relevance of Kenya urban governance experience.",
-      "Community organisers reported the podcast gave them a new tool for introducing tenure rights to savings group members.",
-      "The series prompted a formal request from two county governments to adapt the content for civic education programmes."
-    ],
-    stats: [{ v: "3", l: "Episodes" }, { v: "3,200+", l: "Listens (Month 1)" }, { v: "18", l: "Countries Reached" }],
-    tags: ["Tenure Security", "Community Land'],
-    author: "PASGR / Pamoja Trust", authorInitials: "PP", authorColor: "#C2410C",
-    date: "04 May 2024", views: "3,200", downloads: "612", readTime: "3 x 35 min", fileInfo: "Audio · 3 episodes · 105 mins total"
-  },
-  {
-    id: 11, type: "Public Lecture", typeClass: "type-public-lecture",
-    typeBg: "#F0FDF4", typeColor: "#15803D",
+    id: 2,
+    type: 'Interview',
+    typeClass: 'type-interview',
+    typeBg: '#D1FAE5', typeColor: '#059669',
     typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
-    title: "The Right to the City: A Public Lecture on Urban Justice in Kenya",
-    abstract: `Delivered at the Technical University of Kenya, this lecture by PASGR and Pamoja Trust is designed to offer exposure to the role of social safeguards in development, highlighting their importance in planning, design, and implementation processes, while addressing real-world challenges such as informality, displacement, and inclusive stakeholder engagement.`,
+    title: 'In Conversation: Sam Olando on Urban Poor Rights and the Right to the City',
+    abstract: `Pamoja Trust's Executive Director reflects on 25 years of organising Nairobi's urban poor, the lessons of Mathare and Mukuru, and why social safeguards remain the most contested terrain in Kenyan urban governance.`,
     findings: [
-      "Over 200 students, practitioners, and community leaders attended the lecture at the University of Nairobi.",
-      "The lecture has been downloaded 834 times and adopted as curriculum material in 3 Kenyan university planning departments.",
-      "Post-lecture surveys showed a 72% increase in students reported confidence engaging communities in planning processes.",
-      "The Q&A surfaced a demand for practicum placements with Pamoja Trust, now formalised as a recurring annual programme."
+      'Participatory co-design with marginalised groups added 7 months to rollout but improved adoption by 3×.',
+      'Algorithmic benefit allocation produced a 12% uptake drop among elderly residents — reversed by hybrid model.',
+      'Digital literacy programmes at community centres increased smart-service usage by 58% in target wards.',
+      'Governance structure: independent digital equity ombudsperson proved critical for public trust.'
     ],
-    stats: [{ v: "200+", l: "Live Attendees" }, { v: "834", l: "Downloads" }, { v: "3", l: "Universities Adopted" }],
-    tags: ["Urban Planning", "informality", "displacement"],
-    author: "PASGR / Pamoja Trust", authorInitials: "PP", authorColor: "#15803D",
-    date: "22 Apr 2024", views: "2,988", downloads: "834", readTime: "65 min", fileInfo: "Video · 1080p · 65 mins"
+    stats: [{ v: '3×', l: 'Adoption Increase' }, { v: '58%', l: 'Usage Uplift' }, { v: '2.3M', l: 'Residents Covered' }],
+    tags: ['Digital Governance', 'Inclusive Growth', 'Smart Cities', 'Taiwan', 'Co-Design', 'Utafiti Sera House'],
+    author: 'Sofia Chen', authorInitials: 'SC', authorColor: '#059669',
+    date: '18 Jan 2025', views: '4,891', downloads: '702', readTime: '15 min',
+    fileInfo: 'PDF · 1.1 MB · 11 pages'
+  },
+  {
+    id: 3,
+    type: 'Case Study',
+    typeClass: 'type-case-study',
+    typeBg: '#FEF3C7', typeColor: '#D97706',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    title: 'Mukuru Special Planning Area: Participatory Planning at Scale in Nairobi',
+    abstract: `Kenya's most ambitious informal settlement upgrading process: how Pamoja Trust and Muungano wa Wanavijiji supported 100,000+ residents across 13 villages to co-produce six sector plans — and what happened when formal planning met informal land markets.`,
+    findings: [
+      'Homicide rate in targeted comunas fell 95% between 2002 and 2016 — steeper than citywide trends.',
+      'Library parks generated 340 formal jobs and 1,200 informal livelihoods within 500-metre catchments.',
+      'Cable car accessibility raised property values 18–24% while displacing fewer than 2% of residents.',
+      'Political continuity across three mayoral terms was the single most important enabling factor.'
+    ],
+    stats: [{ v: '95%', l: 'Crime Reduction' }, { v: '1,540', l: 'Jobs Created' }, { v: '15yr', l: 'Study Period' }],
+    tags: ['Participatory Design', 'Infrastructure', 'Social Safeguards', 'Colombia', 'Urban Mobility', 'Utafiti Sera House'],
+    author: 'Luis Mendoza', authorInitials: 'LM', authorColor: '#D97706',
+    date: '09 Dec 2024', views: '5,234', downloads: '1,043', readTime: '22 min',
+    fileInfo: 'PDF · 4.2 MB · 34 pages'
+  },
+  {
+    id: 4,
+    type: 'Infographic',
+    typeClass: 'type-infographic',
+    typeBg: '#FEE2E2', typeColor: '#DC2626',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+    title: 'Who Lives in Nairobi? An Infographic Guide to Urban Informality',
+    abstract: `Over 60% of Nairobi's 5 million residents live in informal settlements occupying just 6% of city land. This visual series maps tenure insecurity, water access, income, and eviction risk across Nairobi's major settlements — making invisible populations legible to decision-makers.`,
+    findings: [
+      'Cities in the top heat-vulnerability quartile have on average 4.2× less green cover than low-vulnerability peers.',
+      'Cooling infrastructure investment averages USD 3.10 per capita across all 60 cities — range: USD 0.40–USD 28.',
+      'Night-time heat retention (a health-risk multiplier) correlates 0.82 with impervious surface ratio.',
+      'Eight cities have committed to measurable heat-island reduction targets in NDC updates since 2022.'
+    ],
+    stats: [{ v: '60', l: 'Cities Mapped' }, { v: '8', l: 'Visualisations' }, { v: '3', l: 'Interactive Maps' }],
+    tags: ['Climate Change', 'Urban Resilience', 'Data Visualisation', 'Heat Islands', 'Global South', 'Utafiti Sera House'],
+    author: 'Nadia Kovacs', authorInitials: 'NK', authorColor: '#DC2626',
+    date: '27 Nov 2024', views: '6,101', downloads: '1,887', readTime: '7 min',
+    fileInfo: 'PDF + SVG pack · 8.6 MB · 24 pages'
+  },
+  {
+    id: 5,
+    type: 'Manual',
+    typeClass: 'type-manual',
+    typeBg: '#E0F2FE', typeColor: '#0369A1',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+    title: 'Adaptive Settlement Planning Framework: A Practitioner\'s Handbook for Infrastructure Projects in Kenya',
+    abstract: `A step-by-step methodology for engineers, planners, and county officers integrating adaptive settlement planning into physical infrastructure — covering vulnerability assessment, stakeholder mapping, and social risk mitigation, with worked examples from Nairobi, Kisumu, and Mombasa.`,
+    findings: [
+      'Participatory mapping sessions consistently surface 40–60% more service gaps than structured survey alone.',
+      'Female-only focus group sub-sessions raised safety and health disclosures by 3.4× in pilot sites.',
+      'Community co-analysis of findings increases local uptake of recommendations from 28% to 71%.',
+      'A 5-day facilitated assessment cycle (vs 3-day) improved data quality scores by 38% on average.'
+    ],
+    stats: [{ v: '14', l: 'Tool Templates' }, { v: '11', l: 'Cities Tested' }, { v: '71%', l: 'Recommendation Uptake' }],
+    tags: ['Stakeholder Engagement', 'Participatory Design', 'Community Health', 'Practitioner Tools', 'Utafiti Sera House'],
+    author: 'Taiwo Okafor', authorInitials: 'TO', authorColor: '#0369A1',
+    date: '15 Oct 2024', views: '3,780', downloads: '1,204', readTime: '45 min',
+    fileInfo: 'PDF · 6.1 MB · 88 pages'
+  },
+  {
+    id: 6,
+    type: 'Change Story',
+    typeClass: 'type-change-story',
+    typeBg: '#DBEAFE', typeColor: '#2563EB',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    title: 'Women\'s Savings Groups as Urban Governance Infrastructure in Kisumu',
+    abstract: `How three women-led savings groups in Obunga and Nyalenda transitioned from micro-credit circles to active participants in county budget processes and infrastructure planning committees — securing water infrastructure commitments from the Kisumu Water and Sewerage Company.`,
+    findings: [
+      '7 savings groups merged into a single governance body representing 4,200 households.',
+      'Formal municipal recognition secured after 3 years of sustained advocacy and documentation.',
+      'Sanitation coverage in target area rose from 34% to 89% following service negotiation.',
+      'Community-run ECD centre now serves 280 children, reducing drop-out rates at primary level.'
+    ],
+    stats: [{ v: '4,200', l: 'Households' }, { v: '89%', l: 'Sanitation Coverage' }, { v: '280', l: 'Children in ECD' }],
+    tags: ['Social Safeguards', 'Inclusive Growth', 'Women Leadership', 'Bangladesh', 'Governance', 'Utafiti Sera House'],
+    author: 'Farida Rahman', authorInitials: 'FR', authorColor: '#4338CA',
+    date: '03 Sep 2024', views: '2,891', downloads: '489', readTime: '14 min',
+    fileInfo: 'PDF · 1.9 MB · 16 pages'
+  },
+  {
+    id: 7,
+    type: 'Policy Brief',
+    typeClass: 'type-policy-brief',
+    typeBg: '#EDE9FE', typeColor: '#7C3AED',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    title: 'Financing Inclusive Urban Infrastructure in Kenya: Beyond Public Budgets',
+    abstract: `Kenya's KES 2.7 trillion urban infrastructure deficit cannot be closed through government budgets alone. This brief maps community savings-linked finance, blended finance facilities, and impact investment vehicles — arguing adaptive settlement planning integration is a prerequisite, not an add-on.`,
+    findings: [
+      'Green bonds for urban NbS have raised USD 4.2B globally since 2017 — 94% in OECD countries.',
+      'Biodiversity credit pilots in 3 African cities generated USD 1.1M for urban wetland restoration.',
+      'Blended finance structures reduced cost of capital for NbS from 9.4% to 5.8% in pilot programmes.',
+      'Impact-linked disbursement triggered higher delivery quality scores in 7 of 8 reviewed contracts.'
+    ],
+    stats: [{ v: '$4.2B', l: 'Green Bonds Raised' }, { v: '3', l: 'Credit Pilots' }, { v: '5.8%', l: 'Blended Finance Rate' }],
+    tags: ['Climate Change', 'Infrastructure', 'Adaptive Planning', 'Green Finance', 'Nature-Based Solutions', 'Utafiti Sera House'],
+    author: 'Elena Vargas', authorInitials: 'EV', authorColor: '#0D9488',
+    date: '20 Aug 2024', views: '2,234', downloads: '398', readTime: '10 min',
+    fileInfo: 'PDF · 1.4 MB · 12 pages'
+  },
+  {
+    id: 8,
+    type: 'Documentary',
+    typeClass: 'type-documentary',
+    typeBg: '#F3E8FF', typeColor: '#7E22CE',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>`,
+    title: 'Nairobi River Regeneration: Whose City Is It?',
+    abstract: `Follows communities in Shauri Moyo, Kariobangi, and Kawangware as they engage Pamoja Trust's multi-stakeholder forum and navigate the gap between the Nairobi Rivers Commission's 27km regeneration vision and their own right to remain. 42,000 residents. 14 agencies. One process.`,
+    findings: [
+      'All three subjects remained within 4km of original site — counter to government relocation projections.',
+      'Children\'s school enrolment dropped 62% in year one post-demolition; recovered to 78% by year three.',
+      'Informal savings networks were the primary economic resilience mechanism for all displaced families.',
+      'Documentary has been screened in 14 countries and submitted to four national parliamentary inquiries.'
+    ],
+    stats: [{ v: '38', l: 'Minutes Runtime' }, { v: '4yr', l: 'Production Span' }, { v: '14', l: 'Countries Screened' }],
+    tags: ['Social Safeguards', 'Housing Policy', 'Stakeholder Engagement', 'Nigeria', 'Forced Eviction', 'Utafiti Sera House'],
+    author: 'Ola Adeyemi', authorInitials: 'OA', authorColor: '#E11D48',
+    date: '11 Jul 2024', views: '7,443', downloads: '2,318', readTime: '38 min',
+    fileInfo: 'MP4 stream · Subtitles: EN, FR, PT · 38 min'
+  },
+  {
+    id: 9,
+    type: 'Case Study',
+    typeClass: 'type-case-study',
+    typeBg: '#FEF3C7', typeColor: '#D97706',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    title: 'Urban Boards and Citizen Forums: Evidence from Nairobi and the Lake Region',
+    abstract: `PASGR's Urban Governance House examines two parallel processes — Nairobi's ward-level citizen engagement structures and the Lake Region Economic Bloc's Citizen Engagement Framework — to identify when Urban Boards become genuine accountability mechanisms rather than consultative theatre.`,
+    findings: [
+      'Real investment in lowest-income districts rose 68% in the programme\'s first decade.',
+      'Participation peaked at 40,000 delegates in 2002; stabilised at ~18,000 in the post-2016 reformed model.',
+      'PB allocations consistently over-indexed basic sanitation (38% of total) vs. city-wide average (22%).',
+      'Political transition to right-of-centre government in 2004 reduced PB budget share from 21% to 9%.'
+    ],
+    stats: [{ v: '30yr', l: 'Study Period' }, { v: '68%', l: 'Investment Increase' }, { v: '40K', l: 'Peak Delegates' }],
+    tags: ['Participatory Design', 'Inclusive Growth', 'Brazil', 'Democratic Governance', 'Budget', 'Utafiti Sera House'],
+    author: 'Marco Braga', authorInitials: 'MB', authorColor: '#475569',
+    date: '28 Jun 2024', views: '4,112', downloads: '963', readTime: '28 min',
+    fileInfo: 'PDF · 5.3 MB · 42 pages'
+  },
+  {
+    id: 10,
+    type: 'Interview',
+    typeClass: 'type-interview',
+    typeBg: '#D1FAE5', typeColor: '#059669',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+    title: 'Urban Governance Unpacked: Pamoja Trust on Land, Rights, and the Kenyan City',
+    abstract: `A three-part podcast series produced by PASGR in which Pamoja Trust practitioners, community organisers from Muungano wa Wanavijiji, and county government officials discuss land tenure security, social safeguards, and what devolution has — and has not — delivered for Nairobi's urban poor.`,
+    findings: [
+      'Urban forests delivering measurable cooling require a minimum threshold of 22% canopy cover per ward.',
+      'Sponge city frameworks reduce surface runoff by 30–50% when applied at district scale, per Wuhan data.',
+      'Fewer than 12% of NbS pilots globally have been independently evaluated at scale post-implementation.',
+      'Long-term maintenance costs are the primary failure point — typically not budgeted beyond year 3.'
+    ],
+    stats: [{ v: '22%', l: 'Canopy Threshold' }, { v: '50%', l: 'Runoff Reduction' }, { v: '12%', l: 'Independently Evaluated' }],
+    tags: ['Climate Change', 'Urban Resilience', 'Infrastructure', 'Nature-Based Solutions', 'UN-Habitat', 'Utafiti Sera House'],
+    author: 'Yuki Suzuki', authorInitials: 'YS', authorColor: '#65A30D',
+    date: '04 May 2024', views: '3,561', downloads: '712', readTime: '16 min',
+    fileInfo: 'PDF · 1.3 MB · 13 pages'
+  },
+  {
+    id: 11,
+    type: 'Manual',
+    typeClass: 'type-manual',
+    typeBg: '#E0F2FE', typeColor: '#0369A1',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+    title: 'The Right to the City: A Public Lecture on Urban Justice in Kenya',
+    abstract: `Delivered at the University of Nairobi, this lecture by PASGR and Pamoja Trust researchers examines the constitutional, planning, and political dimensions of the right to the city in Kenya — drawing on the Mukuru SPA, Mathare resettlement, and Nairobi River Regeneration as case anchors.`,
+    findings: [
+      'Biometric enrolment without outreach support excludes 28–41% of target populations in pilot cities.',
+      'Privacy impact assessments conducted before procurement reduce post-rollout incidents by 64%.',
+      'Community-managed data centres outperformed centralised alternatives on both uptime and trust metrics.',
+      'No-ID fallback pathways increased overall service uptake by 19% without compromising system integrity.'
+    ],
+    stats: [{ v: '64%', l: 'Incident Reduction' }, { v: '19%', l: 'Uptake Increase' }, { v: '5', l: 'Implementation Phases' }],
+    tags: ['Digital Governance', 'Social Safeguards', 'Data Privacy', 'Service Delivery', 'Implementation', 'Utafiti Sera House'],
+    author: 'Priya Krishnan', authorInitials: 'PK', authorColor: '#0891B2',
+    date: '22 Apr 2024', views: '2,988', downloads: '834', readTime: '50 min',
+    fileInfo: 'PDF · 7.2 MB · 96 pages'
   }
-]
+];
 
 /* ═══════════════════════════════════════════════════════════════
    MODAL ENGINE
@@ -1138,22 +1167,22 @@ const panel     = document.getElementById('modalPanel');
 const closeBtn  = document.getElementById('modalClose');
 let currentIdx  = 0;
 
-const PEXELS_IDS = [17931802,373912,30690397,2458028,259987,4575148,3892899,242133,20563032,5802549,29254941,11645013];
+const PEXELS_IDS = [33749805,1181406,30690397,33072154,17931802,6018652,3892899,19982408,20563032,8730123,33923596,31820972];
 
 function openModal(idx) {
   currentIdx = idx;
   populateModal(MATERIALS[idx]);
   overlay.classList.add('is-open');
   document.body.style.overflow = 'hidden';
-  // reset scroll
+  document.querySelector('.page-frame').setAttribute('aria-hidden', 'true');
   panel.querySelector('.modal-body').scrollTop = 0;
-  // focus trap seed
   setTimeout(() => closeBtn.focus(), 320);
 }
 
 function closeModal() {
   overlay.classList.remove('is-open');
   document.body.style.overflow = '';
+  document.querySelector('.page-frame').removeAttribute('aria-hidden');
 }
 
 function populateModal(m) {
@@ -1329,7 +1358,7 @@ const CATEGORY_TAGS = {
   'academia': ['academia'],
   'social-safeguards': ['social-safeguards'],
   'adaptive-planning': ['adaptive-planning'],
-  'utafiti-sera house': ['utafiti-sera house']
+  'utafiti-sera': ['utafiti-sera']
 };
 
 function updateTabBadges() {
@@ -1468,13 +1497,14 @@ document.querySelector('.sort-select').addEventListener('change', function() {
 // Card entrance animation
 updateTabBadges();
 const cards = document.querySelectorAll('.card');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       setTimeout(() => {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
-      }, (parseInt(entry.target.dataset.idx) || 0) * 55);
+      }, prefersReducedMotion ? 0 : (parseInt(entry.target.dataset.idx) || 0) * 55);
       observer.unobserve(entry.target);
     }
   });
@@ -1482,48 +1512,14 @@ const observer = new IntersectionObserver((entries) => {
 
 cards.forEach((card, i) => {
   card.dataset.idx = i % 3;
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(18px)';
-  card.style.transition = `opacity .4s ease, transform .4s ease, box-shadow .22s, border-color .22s`;
+  if (!prefersReducedMotion) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(18px)';
+    card.style.transition = `opacity .4s ease, transform .4s ease, box-shadow .22s, border-color .22s`;
+  }
   observer.observe(card);
 });
-/* ═══════════════════════════════════════════════════════════════
-   HAMBURGER / MOBILE NAV
-   ═══════════════════════════════════════════════════════════════ */
-const hamburger   = document.getElementById('navHamburger');
-const mobileDrawer = document.getElementById('mobileNavDrawer');
-const mobileScrim  = document.getElementById('mobileNavScrim');
-
-function openMobileNav() {
-  hamburger.classList.add('is-open');
-  hamburger.setAttribute('aria-expanded', 'true');
-  mobileDrawer.classList.add('is-open');
-  mobileDrawer.setAttribute('aria-hidden', 'false');
-  mobileScrim.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-}
-function closeMobileNav() {
-  hamburger.classList.remove('is-open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  mobileDrawer.classList.remove('is-open');
-  mobileDrawer.setAttribute('aria-hidden', 'true');
-  mobileScrim.classList.remove('is-open');
-  document.body.style.overflow = '';
-}
-
-hamburger.addEventListener('click', () => {
-  if (mobileDrawer.classList.contains('is-open')) closeMobileNav();
-  else openMobileNav();
-});
-mobileScrim.addEventListener('click', closeMobileNav);
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileDrawer.classList.contains('is-open')) closeMobileNav();
-});
-// Close drawer when a nav link is tapped
-mobileDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
-
 
 </script>
 </body>
 </html>
-
