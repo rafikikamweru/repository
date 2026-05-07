@@ -1,1 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Urban Governance House Repository</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet"/>
+<style>
+:root { --blue-600: #003300; --blue-500: #3B82F6; --blue-100: #DBEAFE; --blue-50: #e6f0e6; --purple-600: #7C3AED; --purple-100: #EDE9FE; --green-600: #059669; --green-100: #D1FAE5; --amber-600: #D97706; --amber-100: #FEF3C7; --red-600: #DC2626; --red-100: #FEE2E2; --gray-900: #0F172A; --gray-800: #1E293B; --gray-700: #334155; --gray-600: #475569; --gray-500: #64748B; --gray-400: #94A3B8; --gray-300: #CBD5E1; --gray-200: #E2E8F0; --gray-100: #F1F5F9; --gray-50: #F8FAFC; --white: #FFFFFF; --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px; --radius-full: 9999px; --shadow-card: 0 1px 3px rgba(15,23,42,.06), 0 4px 16px rgba(15,23,42,.07); --shadow-hover: 0 4px 12px rgba(15,23,42,.10), 0 12px 32px rgba(15,23,42,.10); --font-display: 'Sora', sans-serif; --font-body: 'DM Sans', sans-serif; --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px; --sp-5: 40px; --sp-6: 48px; }
+*, ::before, ::after { box-sizing: border-box; margin: 0px; padding: 0px; }
+html { font-size: 16px; }
+body { font-family: var(--font-body); background: var(--gray-50); color: var(--gray-800); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+.page-frame { width: 100%; background: var(--gray-50); overflow-x: hidden; }
+.container { max-width: 1200px; margin: 0px auto; padding: 0 var(--sp-3); }
+.nav-bar { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0 var(--sp-3); height: 60px; display: flex; align-items: center; position: sticky; top: 0px; z-index: 100; }
+.nav-inner { max-width: 1200px; width: 100%; margin: 0px auto; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-mark { width: 32px; height: 32px; background: var(--blue-600); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.nav-logo-mark svg { width: 18px; height: 18px; }
+.nav-logo-text { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--gray-900); line-height: 1.2; max-width: 160px; }
+.nav-links { display: flex; align-items: center; gap: var(--sp-2); list-style: none; }
+.nav-links a { font-size: 13.5px; font-weight: 500; color: var(--gray-600); text-decoration: none; padding: 4px 10px; border-radius: var(--radius-sm); transition: color 0.15s, background 0.15s; }
+.nav-links a:hover { color: var(--gray-900); background: var(--gray-100); }
+.nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
+.nav-actions { display: flex; align-items: center; gap: var(--sp-1); }
+.btn { cursor: pointer; border: none; font-family: var(--font-body); }
+.btn-ghost { background: transparent; color: var(--gray-700); font-size: 13.5px; font-weight: 500; padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid var(--gray-300); transition: 0.15s; }
+.btn-ghost:hover { background: var(--gray-100); }
+.btn-primary { background: var(--blue-600); color: var(--white); font-size: 13.5px; font-weight: 600; padding: 7px 16px; border-radius: var(--radius-sm); transition: 0.15s; }
+.btn-primary:hover { background: #004d00; }
+.header-section { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: var(--sp-5) 0 var(--sp-4); }
+.header-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue-600); background: var(--blue-50); padding: 4px 12px; border-radius: var(--radius-full); margin-bottom: var(--sp-2); }
+.header-title { font-family: var(--font-display); font-size: 38px; font-weight: 800; color: var(--gray-900); line-height: 1.18; letter-spacing: -0.02em; max-width: 680px; margin-bottom: var(--sp-1); }
+.header-title span { color: var(--blue-600); }
+.header-subtitle { font-size: 16px; color: var(--gray-500); font-weight: 400; margin-bottom: var(--sp-3); max-width: 560px; line-height: 1.6; }
+.search-wrapper { position: relative; width: 100%; max-width: 860px; }
+.search-input { width: 100%; height: 52px; padding: 0 var(--sp-2) 0 52px; font-family: var(--font-body); font-size: 15px; color: var(--gray-800); background: var(--gray-50); border: 1.5px solid var(--gray-200); border-radius: 12px; outline: none; transition: border 0.18s, box-shadow 0.18s, background 0.18s; }
+.search-input::placeholder { color: var(--gray-400); }
+.search-input:focus { background: var(--white); border-color: #003300; box-shadow: rgba(0, 51, 0, 0.1) 0px 0px 0px 4px; }
+.search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--gray-400); pointer-events: none; transition: color 0.18s; }
+.search-wrapper:focus-within .search-icon { color: var(--blue-600); }
+.search-kbd { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--gray-400); font-family: var(--font-body); font-weight: 500; }
+.kbd { background: var(--gray-200); border-radius: 4px; padding: 2px 6px; font-size: 11px; }
+.filters-section { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0; position: sticky; top: 60px; z-index: 90; }
+.filters-inner { display: flex; flex-direction: column; gap: 0; }
+.category-tabs-wrap { position: relative; background: var(--white); border-bottom: 1px solid var(--gray-200); }
+.category-tabs-wrap::after { display: none; }
+.category-tabs { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding: 8px 0; }
+.category-tabs::-webkit-scrollbar { display: none; }
+.cat-tab { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; font-family: var(--font-body); white-space: nowrap; background: transparent; color: var(--gray-500); transition: background 0.15s, color 0.15s; user-select: none; flex-shrink: 0; }
+.cat-tab--inactive:hover { background: var(--gray-100); color: var(--gray-800); }
+.cat-tab--active { background: #003300; color: #fff; font-weight: 600; }
+.cat-tab-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 99px; font-size: 11px; font-weight: 700; line-height: 1; }
+.cat-tab--inactive .cat-tab-badge { background: var(--gray-100); color: var(--gray-400); }
+.cat-tab--active .cat-tab-badge { background: rgba(255,255,255,0.2); color: #fff; }
+.filters-row-wrap { background: var(--white); padding: var(--sp-2) 0; border-bottom: 1px solid var(--gray-200); }
+.filters-row { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-3); }
+.tag-filter-group { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; flex: 1 1 0%; }
+.tag-filter-label { font-size: 13px; font-weight: 600; color: var(--gray-500); white-space: nowrap; padding-top: 5px; }
+.tag-chips-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); border-radius: var(--radius-full); font-size: 12.5px; font-weight: 500; cursor: pointer; font-family: var(--font-body); transition: 0.15s; user-select: none; }
+.tag-chip:hover { background: var(--blue-50); border-color: var(--blue-200, #BFDBFE); color: var(--blue-600); }
+.tag-chip--active { background: #003300; border-color: #003300; color: #fff; }
+.tag-chip--active .tag-x { display: inline-flex; }
+.tag-x { display: none; font-size: 10px; }
+.sort-control { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.sort-label { font-size: 13px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
+.sort-select { appearance: none; border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 7px 34px 7px 12px; font-family: var(--font-body); font-size: 13.5px; font-weight: 500; color: var(--gray-800); cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: border 0.15s, box-shadow 0.15s; outline: none; }
+.sort-select:focus { border-color: #003300; box-shadow: rgba(0, 51, 0, 0.12) 0px 0px 0px 3px; }
+.results-header { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-3) 0 var(--sp-2); }
+.results-count { font-size: 14px; font-weight: 600; color: var(--gray-600); }
+.results-count strong { color: var(--gray-900); font-weight: 700; }
+.view-toggles { display: flex; gap: 4px; }
+.view-btn { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--gray-100); border: none; cursor: pointer; color: var(--gray-400); transition: 0.15s; }
+.view-btn:hover { background: var(--gray-200); color: var(--gray-700); }
+.view-btn.active { background: var(--blue-600); color: var(--white); }
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); padding-bottom: var(--sp-6); }
+.card { background: var(--white); border-radius: 14px; border: 1px solid var(--gray-200); box-shadow: var(--shadow-card); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow 0.22s, transform 0.22s, border-color 0.22s; position: relative; }
+.card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); border-color: var(--gray-300); }
+.card:hover .card-image img { transform: scale(1.04); }
+.card-image { height: 178px; overflow: hidden; background: var(--gray-100); flex-shrink: 0; position: relative; }
+.card-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.card-pexels-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.card:hover .card-pexels-img { transform: scale(1.04); }
+.card-image-overlay { position: absolute; inset: 0px; background: linear-gradient(transparent 40%, rgba(15, 23, 42, 0.18) 100%); pointer-events: none; }
+.card-body { padding: 16px 18px 0px; flex: 1 1 0%; display: flex; flex-direction: column; gap: 10px; }
+.content-type { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: var(--radius-full); font-size: 11.5px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; width: fit-content; }
+.type-change-story { background: var(--blue-100); color: var(--blue-600); }
+.type-policy-brief { background: var(--purple-100); color: var(--purple-600); }
+.type-interview { background: var(--green-100); color: var(--green-600); }
+.type-case-study { background: var(--amber-100); color: var(--amber-600); }
+.type-infographic { background: rgb(254, 226, 226); color: rgb(220, 38, 38); }
+.type-manual { background: rgb(224, 242, 254); color: rgb(3, 105, 161); }
+.type-documentary { background: rgb(243, 232, 255); color: rgb(126, 34, 206); }
+.type-podcast { background: rgb(243, 232, 255); color: rgb(129, 54, 37); }
+.type-public-lecture { background: rgb(243, 232, 255); color: rgb(12, 114, 122); }
+.content-type svg { width: 11px; height: 11px; }
+.card-title { font-family: var(--font-display); font-size: 16.5px; font-weight: 700; color: var(--gray-900); line-height: 1.38; letter-spacing: -0.01em; }
+.card-desc { font-size: 13.5px; color: var(--gray-500); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.card-tag { padding: 3px 9px; background: var(--gray-100); border-radius: var(--radius-full); font-size: 11.5px; font-weight: 500; color: var(--gray-600); border: 1px solid var(--gray-200); cursor: default; user-select: none; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px 16px; margin-top: auto; border-top: 1px solid var(--gray-100); }
+.card-meta-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--gray-400); font-weight: 500; }
+.card-meta-item svg { width: 13px; height: 13px; flex-shrink: 0; }
+.pagination { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0 0 var(--sp-6); }
+.page-btn { min-width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1px solid var(--gray-200); background: var(--white); font-size: 13.5px; font-weight: 600; color: var(--gray-600); cursor: pointer; font-family: var(--font-body); transition: 0.15s; padding: 0px 4px; }
+.page-btn:hover { background: var(--gray-100); color: var(--gray-900); }
+.page-btn.active { background: var(--blue-600); border-color: var(--blue-600); color: var(--white); box-shadow: rgba(37, 99, 235, 0.28) 0px 2px 8px; }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.modal-overlay { position: fixed; inset: 0px; z-index: 500; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(15, 23, 42, 0); backdrop-filter: blur(0px); pointer-events: none; transition: background 0.28s, backdrop-filter 0.28s; }
+.modal-overlay.is-open { background: rgba(15, 23, 42, 0.55); backdrop-filter: blur(6px); pointer-events: all; }
+.modal-panel { background: var(--white); border-radius: 20px; width: 100%; max-width: 820px; max-height: 90vh; display: flex; flex-direction: column; box-shadow: rgba(15, 23, 42, 0.22) 0px 24px 80px, rgba(15, 23, 42, 0.1) 0px 4px 16px; overflow: hidden; transform: translateY(28px) scale(0.97); opacity: 0; transition: transform 0.32s cubic-bezier(0.22, 0.68, 0, 1.2), opacity 0.28s; will-change: transform, opacity; }
+.modal-overlay.is-open .modal-panel { transform: translateY(0px) scale(1); opacity: 1; }
+.modal-hero { height: 220px; flex-shrink: 0; position: relative; overflow: hidden; }
+.modal-hero-bg { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+.modal-panel:hover .modal-hero-bg { transform: scale(1.03); }
+.modal-hero-overlay { position: absolute; inset: 0px; background: linear-gradient(160deg, transparent 30%, rgba(15, 23, 42, 0.5) 100%); }
+.modal-hero-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-700); transition: 0.15s; box-shadow: rgba(15, 23, 42, 0.15) 0px 2px 8px; z-index: 10; }
+.modal-hero-close:hover { background: var(--white); color: var(--gray-900); transform: rotate(90deg); }
+.modal-body { overflow-y: auto; flex: 1 1 0%; padding: 28px 32px 0px; scrollbar-width: thin; scrollbar-color: var(--gray-200) transparent; }
+.modal-body::-webkit-scrollbar { width: 5px; }
+.modal-body::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 99px; }
+.modal-author-chip { display: flex; align-items: center; gap: 8px; }
+.modal-author-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--white); flex-shrink: 0; }
+.modal-top-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.modal-type-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 13px; border-radius: var(--radius-full); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.modal-share-row { display: flex; gap: 6px; flex-shrink: 0; }
+.modal-share-btn { width: 34px; height: 34px; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--gray-500); transition: 0.15s; }
+.modal-share-btn:hover { background: var(--blue-50); border-color: var(--blue-200,#BFDBFE); color: var(--blue-600); }
+.modal-share-btn[data-platform="facebook"]:hover  { background: #e7f0fd; border-color: #1877F2; color: #1877F2; }
+.modal-share-btn[data-platform="twitter"]:hover   { background: #f0f0f0; border-color: #000; color: #000; }
+.modal-share-btn[data-platform="whatsapp"]:hover  { background: #e8f8ed; border-color: #25D366; color: #25D366; }
+.modal-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--gray-900); line-height: 1.32; letter-spacing: -0.018em; margin-bottom: 12px; }
+.modal-meta-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; padding: 14px 0px; border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100); margin-bottom: 20px; }
+.modal-meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-500); font-weight: 500; }
+.modal-meta-item svg { width: 14px; height: 14px; color: var(--gray-400); flex-shrink: 0; }
+.modal-meta-item strong { color: var(--gray-800); font-weight: 600; }
+.modal-section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 8px; }
+.modal-abstract { font-size: 15px; color: var(--gray-700); line-height: 1.72; margin-bottom: 24px; }
+.modal-findings { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 12px; padding: 18px 20px; margin-bottom: 24px; }
+.modal-findings-title { font-size: 13px; font-weight: 700; color: var(--blue-600); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+.modal-findings ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.modal-findings li { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; color: var(--gray-700); line-height: 1.55; }
+.modal-findings li::before { content: ""; width: 6px; height: 6px; background: var(--blue-500); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.modal-tags-section { margin-bottom: 24px; }
+.modal-tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.modal-tag { padding: 5px 12px; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--radius-full); font-size: 12.5px; font-weight: 500; color: var(--gray-600); cursor: pointer; font-family: var(--font-body); transition: 0.14s; }
+.modal-tag:hover { background: var(--blue-50); border-color: rgb(191, 219, 254); color: var(--blue-600); }
+.modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+.modal-stat { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 10px; padding: 14px 16px; text-align: center; }
+.modal-stat-value { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--gray-900); line-height: 1; margin-bottom: 4px; }
+.modal-stat-label { font-size: 11.5px; color: var(--gray-500); font-weight: 500; }
+.modal-footer { flex-shrink: 0; padding: 20px 32px 24px; border-top: 1px solid var(--gray-100); display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--white); }
+.modal-footer-left { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--gray-400); }
+.modal-cta-group { display: flex; gap: 10px; align-items: center; }
+.btn-modal-secondary { display: inline-flex; align-items: center; gap: 7px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 9px; font-family: var(--font-body); font-size: 13.5px; font-weight: 600; color: var(--gray-700); cursor: pointer; transition: 0.15s; }
+.btn-modal-secondary:hover { background: var(--gray-100); border-color: var(--gray-400); color: var(--gray-900); }
+.btn-modal-secondary svg { width: 15px; height: 15px; }
+.btn-modal-primary { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--blue-600); border: none; border-radius: 9px; font-family: var(--font-body); font-size: 13.5px; font-weight: 700; color: var(--white); cursor: pointer; transition: 0.15s; box-shadow: rgba(37, 99, 235, 0.3) 0px 2px 10px; }
+.btn-modal-primary:hover { background: rgb(29, 78, 216); box-shadow: rgba(37, 99, 235, 0.38) 0px 4px 16px; transform: translateY(-1px); }
+.btn-modal-primary svg { width: 15px; height: 15px; }
+.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--gray-900); color: var(--white); font-size: 13.5px; font-weight: 500; padding: 11px 20px; border-radius: 10px; font-family: var(--font-body); box-shadow: rgba(0, 0, 0, 0.22) 0px 6px 24px; display: flex; align-items: center; gap: 8px; z-index: 900; opacity: 0; pointer-events: none; transition: opacity 0.22s, transform 0.22s; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0px); }
+.toast-icon { display: none; }
+.nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 38px; height: 38px; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; cursor: pointer; padding: 0px; flex-shrink: 0; }
+.nav-hamburger span { display: block; width: 18px; height: 2px; background: var(--gray-700); border-radius: 2px; transition: transform 0.22s, opacity 0.18s; }
+.nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav-drawer { position: fixed; top: 60px; left: 0px; right: 0px; background: var(--white); border-bottom: 1px solid var(--gray-200); z-index: 95; transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform 0.24s cubic-bezier(0.22, 0.68, 0, 1.1), opacity 0.2s; box-shadow: rgba(15, 23, 42, 0.1) 0px 8px 24px; }
+.mobile-nav-drawer.is-open { transform: translateY(0px); opacity: 1; pointer-events: all; }
+.mobile-nav-inner { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 16px; }
+.mobile-nav-links { display: flex; flex-direction: column; gap: 2px; }
+.mobile-nav-links a { font-size: 15px; font-weight: 500; color: var(--gray-700); text-decoration: none; padding: 10px 12px; border-radius: 8px; transition: 0.14s; }
+.mobile-nav-links a:hover, .mobile-nav-links a.active { background: var(--blue-50); color: var(--blue-600); }
+.mobile-nav-ctas { display: flex; gap: 10px; }
+.mobile-nav-scrim { position: fixed; inset: 0px; background: rgba(15, 23, 42, 0.25); z-index: 94; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.mobile-nav-scrim.is-open { opacity: 1; pointer-events: all; }
+@media (max-width: 1023px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  #navSignIn { display: none; }
+  #navSubmit { display: none; }
+  .container { padding: 0px 20px; }
+  .header-section { padding: 32px 0px 28px; }
+  .header-title { font-size: 30px; max-width: 100%; }
+  .header-subtitle { font-size: 14.5px; margin-bottom: 20px; }
+  .search-input { height: 48px; font-size: 14px; }
+  .filters-section { top: 60px; }
+  .filters-row { flex-direction: column; gap: 12px; }
+  .sort-control { align-self: flex-start; }
+  .card-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .modal-panel { max-width: 680px; }
+  .modal-body { padding: 22px 24px 0px; }
+  .modal-footer { padding: 16px 24px 20px; }
+  .modal-stats { grid-template-columns: repeat(3, 1fr); }
+  .design-note { display: none; }
+}
+@media (max-width: 639px) {
+  :root { --sp-3: 16px; --sp-4: 24px; --sp-5: 28px; --sp-6: 36px; }
+  .container { padding: 0px 16px; }
+  .nav-bar { height: 56px; padding: 0px 16px; }
+  .nav-logo-text { font-size: 12.5px; max-width: 130px; }
+  .filters-section { top: 56px; }
+  .header-section { padding: 24px 0px 22px; }
+  .header-eyebrow { font-size: 10.5px; }
+  .header-title { font-size: 24px; letter-spacing: -0.015em; line-height: 1.22; }
+  .header-subtitle { font-size: 13.5px; line-height: 1.55; }
+  .search-input { height: 46px; font-size: 14px; padding-left: 44px; border-radius: 10px; }
+  .search-icon { left: 14px; width: 16px; height: 16px; }
+  .search-kbd { display: none; }
+  .cat-tab { padding: 7px 13px; font-size: 13px; gap: 6px; }
+  .cat-tab-badge { min-width: 18px; height: 17px; font-size: 10px; padding: 0px 4px; }
+  .filters-row { gap: 10px; }
+  .filters-row-wrap { padding: 12px 0; }
+  .tag-filter-group { flex-direction: column; gap: 8px; }
+  .tag-filter-label { padding-top: 0px; font-size: 12px; }
+  .tag-chip { font-size: 12px; padding: 4px 10px; }
+  .sort-control { width: 100%; justify-content: space-between; }
+  .sort-select { flex: 1 1 0%; font-size: 13px; }
+  .results-header { padding: 16px 0px 12px; flex-wrap: wrap; gap: 8px; }
+  .results-count { font-size: 13px; }
+  .view-toggles .view-btn { width: 30px; height: 30px; }
+  .card-grid { grid-template-columns: 1fr; gap: 14px; padding-bottom: 32px; }
+  .card-image { height: 160px; }
+  .card-body { padding: 14px 16px 0px; gap: 8px; }
+  .card-title { font-size: 15.5px; }
+  .card-desc { font-size: 13px; -webkit-line-clamp: 2; }
+  .card-footer { padding: 10px 16px 14px; }
+  .pagination { gap: 3px; padding-bottom: var(--sp-5); }
+  .page-btn { min-width: 32px; height: 32px; font-size: 12.5px; }
+  .modal-overlay { align-items: flex-end; padding: 0px; }
+  .modal-panel { max-width: 100%; max-height: 94vh; border-radius: 20px 20px 0px 0px; transform: translateY(48px) scale(1); }
+  .modal-overlay.is-open .modal-panel { transform: translateY(0px) scale(1); }
+  .modal-panel::before { content: ""; display: block; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 36px; height: 4px; background: var(--gray-300); border-radius: 2px; z-index: 10; }
+  .modal-hero { height: 180px; }
+  .modal-body { padding: 18px 18px 0px; }
+  .modal-title { font-size: 18px; }
+  .modal-meta-row { gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .modal-meta-item { font-size: 12px; }
+  .modal-abstract { font-size: 14px; }
+  .modal-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .modal-stat-value { font-size: 18px; }
+  .modal-stat-label { font-size: 10.5px; }
+  .modal-footer { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 18px 20px; }
+  .modal-footer-left { justify-content: center; }
+  .modal-cta-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .btn-modal-primary { grid-column: 1 / -1; justify-content: center; }
+  .btn-modal-secondary { justify-content: center; }
+  .mobile-nav-ctas { flex-direction: column; }
+  .design-note { display: none; }
+}
+@media (max-width: 389px) {
+  .header-title { font-size: 21px; }
+  .cat-tab { padding: 6px 10px; font-size: 12px; }
+  .modal-stats { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .modal-stat-value { font-size: 16px; }
+  .modal-cta-group { grid-template-columns: 1fr; }
+}
+@media (hover: none) {
+  .card:hover { transform: none; box-shadow: var(--shadow-card); }
+  .card:active { transform: scale(0.985); box-shadow: var(--shadow-card); }
+}
+@media (min-width: 1400px) {
+  .container { padding: 0 var(--sp-4); }
+  .header-title { font-size: 42px; }
+}
+.cat-tab--special.cat-tab--inactive { color: rgb(146,64,14); }
+.cat-tab--special.cat-tab--inactive:hover { background: rgb(254,243,199); color: rgb(120,53,15); }
+.cat-tab--special.cat-tab--inactive .cat-tab-badge { background: rgb(253,230,138); color: rgb(146,64,14); }
+.cat-tab--special.cat-tab--active { background: rgb(254,243,199); color: rgb(120,53,15); }
+.cat-tab--special.cat-tab--active .cat-tab-badge { background: rgb(253,230,138); color: rgb(146,64,14); }
+.tag-chips-wrap--locked { display: none; }
+.tag-chip--type { gap: 6px; }
+.tag-chip--type svg { flex-shrink: 0; }
+.tag-chip--active.tag-chip--type .tag-x { display: inline-flex; }
+.design-note { position: fixed; bottom: 20px; right: 20px; background: var(--gray-900); color: var(--white); font-size: 11.5px; font-weight: 500; padding: 10px 16px; border-radius: 10px; font-family: var(--font-body); box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 20px; display: flex; align-items: center; gap: 8px; z-index: 200; }
+.design-note svg { width: 14px; height: 14px; color: rgb(96, 165, 250); }
+
+
+.site-footer { background: var(--white); border-top: 1px solid var(--gray-200); padding: var(--sp-5) 0; margin-top: 0; }
+.footer-inner { display: flex; align-items: flex-start; gap: var(--sp-5); }
+.footer-logos { display: flex; align-items: center; gap: var(--sp-2); flex-shrink: 0; }
+.footer-logo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.footer-logo-label { font-size: 11px; font-weight: 500; color: var(--gray-400); white-space: nowrap; }
+.footer-logo-divider { width: 1px; height: 40px; background: var(--gray-200); margin: 0 4px; }
+.footer-desc { flex: 1 1 0%; border-left: 1px solid var(--gray-200); padding-left: var(--sp-4); }
+.footer-desc p { font-size: 13.5px; color: var(--gray-500); line-height: 1.72; max-width: 680px; }
+@media (max-width: 639px) {
+  .footer-inner { flex-direction: column; gap: var(--sp-3); }
+  .footer-desc { border-left: none; border-top: 1px solid var(--gray-200); padding-left: 0; padding-top: var(--sp-3); }
+}
+</style>
+</head>
+<body>
+
+<div class="page-frame">
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+  <div class="mobile-nav-inner">
+    <nav class="mobile-nav-links">
+      <a href="#" class="active">Repository</a>
+    </nav>
+
+  </div>
+</div>
+<div class="mobile-nav-scrim" id="mobileNavScrim"></div>
+
+<!-- ════════════════════════════════════════════════════════════
+     HEADER SECTION
+     ════════════════════════════════════════════════════════════ -->
+<section class="header-section">
+  <div class="container">
+    <div class="header-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"></svg>
+      Urban Governance House Repository
+    </div>
+
+    <h1 class="header-title">Utafiti Sera on Urban Governance.</h1>
+    <p class="header-subtitle">Embedding Social Safeguards into Policy and Practice Through Evidence-Informed Approaches</p>
+
+    <!-- Search Bar Component -->
+    <div class="search-wrapper">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        id="searchInput" class="search-input"
+        type="text"
+
+        placeholder="Search by title, topic, or keyword…"
+        aria-label="Search repository"
+      />
+      <div class="search-kbd">
+        <span class="kbd">⌘</span>
+        <span class="kbd">K</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     FILTERS SECTION
+     ════════════════════════════════════════════════════════════ -->
+<section class="filters-section">
+
+      <!-- Category Tabs Row — full bleed -->
+      <div class="category-tabs-wrap">
+      <div class="container">
+      <div class="category-tabs" role="tablist" aria-label="Filter by audience or sector">
+        <button class="cat-tab cat-tab--active" role="tab" aria-selected="true" data-category="all" onclick="switchTab(this)">
+          All Materials <span class="cat-tab-badge">148</span>
+        </button>
+        <button class="cat-tab cat-tab--inactive" role="tab" aria-selected="false" data-category="academia" onclick="switchTab(this)">
+          Academia <span class="cat-tab-badge">29</span>
+        </button>
+        <button class="cat-tab cat-tab--inactive" role="tab" aria-selected="false" data-category="social-safeguards" onclick="switchTab(this)">
+          Social Safeguards <span class="cat-tab-badge">36</span>
+        </button>
+        <button class="cat-tab cat-tab--inactive" role="tab" aria-selected="false" data-category="adaptive-planning" onclick="switchTab(this)">
+          Adaptive Planning <span class="cat-tab-badge">24</span>
+        </button>
+        <button class="cat-tab cat-tab--inactive" role="tab" aria-selected="false" data-category="utafiti-sera" onclick="switchTab(this)">
+          Utafiti Sera House <span class="cat-tab-badge">18</span>
+        </button>
+      </div>
+      </div><!-- /container -->
+      </div><!-- /category-tabs-wrap -->
+
+      <!-- Tags + Sort Row -->
+      <div class="filters-row-wrap">
+      <div class="container">
+      <div class="filters-row">
+        <div class="tag-filter-group tag-filter-group--locked" id="typeFilterGroup">
+          <span class="tag-filter-label">Filter by type:</span>
+          <div class="tag-chips-wrap tag-chips-wrap--locked" id="typeChipsWrap">
+            <button class="tag-chip tag-chip--type tag-chip--active" data-type="change-story" onclick="toggleTag(this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              Change Stories <span class="tag-x">✕</span>
+            </button>
+            <button class="tag-chip tag-chip--type" data-type="policy-brief" onclick="toggleTag(this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Policy Briefs <span class="tag-x">✕</span>
+            </button>
+            <button class="tag-chip tag-chip--type" data-type="interview" onclick="toggleTag(this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Interviews <span class="tag-x">✕</span>
+            </button>
+            <button class="tag-chip tag-chip--type" data-type="case-study" onclick="toggleTag(this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Case Studies <span class="tag-x">✕</span>
+            </button>
+            <button class="tag-chip tag-chip--type" data-type="infographic" onclick="toggleTag(this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Infographics <span class="tag-x">✕</span>
+            </button>
+            <button class="tag-chip tag-chip--type" data-type="manual" onclick="toggleTag(this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+              Manuals <span class="tag-x">✕</span>
+            </button>
+            <button class="tag-chip tag-chip--type" data-type="podcast" onclick="toggleTag(this)">
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="9" y="2" width="6" height="11" rx="3"/>
+    <path d="M5 10a7 7 0 0014 0"/>
+    <line x1="12" y1="19" x2="12" y2="22"/>
+    <line x1="8" y1="22" x2="16" y2="22"/>
+  </svg> Podcast <span class="tag-x">✕</span>
+            </button>
+          <button class="tag-chip tag-chip--type" data-type="public-lecture" onclick="toggleTag(this)">
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- Cap top -->
+    <polygon points="12 3 2 8 12 13 22 8 12 3"/>
+    <!-- Cap base -->
+    <path d="M6 10v4c0 1.5 3 3 6 3s6-1.5 6-3v-4"/>
+    <!-- Tassel -->
+    <line x1="22" y1="8" x2="22" y2="14"/>
+    <circle cx="22" cy="16" r="1"/>
+  </svg>
+  Public Lectures <span class="tag-x">✕</span>
+</button>
+          <button class="tag-chip tag-chip--type" data-type="documentary" onclick="toggleTag(this)">
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="2" y="7" width="20" height="14" rx="2"/>
+    <path d="M16 3l-4 4-4-4"/>
+  </svg>
+  Documentaries <span class="tag-x">✕</span>
+</button>
+          </div>
+        </div>
+        <div class="sort-control">
+          <span class="sort-label">Sort by:</span>
+          <select class="sort-select" aria-label="Sort materials">
+            <option>Date (Newest First)</option>
+            <option>Date (Oldest First)</option>
+            <option>Title A → Z</option>
+            <option>Most Downloaded</option>
+          </select>
+        </div>
+      </div><!-- /filters-row -->
+      </div><!-- /container -->
+      </div><!-- /filters-row-wrap -->
+
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ════════════════════════════════════════════════════════════ -->
+<main>
+  <div class="container">
+
+    <!-- Results Header -->
+    <div class="results-header">
+      <p class="results-count">Showing <strong>1–9</strong> of <strong>12</strong> results</p>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="view-toggles">
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CARD GRID ─────────────────────────────────────────── -->
+    <div class="card-grid">
+
+      <!-- CARD 1 -->
+      <article class="card" data-material-idx="0" data-category="social-safeguards" data-type="change-story">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/33749805/pexels-photo-33749805.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Community gathering in informal settlement, East Africa" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-change-story">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Change Story
+          </div>
+          <h2 class="card-title">Mathare Speaks: Community-Led Resettlement in Nairobi</h2>
+          <p class="card-desc">How over 4,000 households in Mathare organised savings groups, conducted their own enumeration, and negotiated directly with Nairobi City County to transform a forced eviction threat into a dignified, negotiated resettlement — now a national reference model.</p>
+          <div class="card-tags">
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Housing Policy</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            14 Mar 2025
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="card" data-material-idx="1" data-category="social-safeguards" data-type="policy-brief">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Diverse professionals in policy discussion meeting" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-policy-brief">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Policy Brief
+          </div>
+          <h2 class="card-title">Social Safeguards in Nairobi Infrastructure Projects: A Policy Framework</h2>
+          <p class="card-desc">Argues for mandatory Social Impact Assessments, Resettlement Action Plans, and Grievance Redress Mechanisms in all public works affecting informal settlements — grounded in field evidence from the Nairobi River Regeneration and Ngong Road expansion.</p>
+          <div class="card-tags">
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Infrastructure Financing</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            02 Feb 2025
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 3 -->
+      <article class="card" data-material-idx="2" data-category="stakeholder-engagement" data-type="interview">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/30690397/pexels-photo-30690397.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Two people in conversation, community interview" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-interview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            Interview
+          </div>
+          <h2 class="card-title">In Conversation: Sam Olando on Urban Poor Rights and the Right to the City</h2>
+          <p class="card-desc">Pamoja Trust's Executive Director reflects on 25 years of organising Nairobi's urban poor, the lessons of Mathare and Mukuru, and why social safeguards remain the most contested terrain in Kenyan urban governance.</p>
+          <div class="card-tags">
+            <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Urban Governance</span>
+            <span class="card-tag">Social Safeguards</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            18 Jan 2025
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 4 -->
+      <article class="card" data-material-idx="3" data-category="urban-planning" data-type="case-study">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/33072154/pexels-photo-33072154.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Aerial view of urban informal settlement rooftops" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-case-study">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Case Study
+          </div>
+          <h2 class="card-title">Mukuru Special Planning Area: Participatory Planning at Scale in Nairobi</h2>
+          <p class="card-desc">Kenya's most ambitious informal settlement upgrading process: how Pamoja Trust and Muungano wa Wanavijiji supported 100,000+ residents across 13 villages to co-produce six sector plans — and what happened when formal planning met informal land markets.</p>
+          <div class="card-tags">
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Participatory Design</span>
+            <span class="card-tag">Social Safeguards</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            09 Dec 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 5 -->
+      <article class="card" data-material-idx="4" data-category="urban-planning" data-type="infographic">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/17931802/pexels-photo-17931802.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Nairobi urban community street life" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-infographic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Infographic
+          </div>
+          <h2 class="card-title">Who Lives in Nairobi? An Infographic Guide to Urban Informality</h2>
+          <p class="card-desc">Over 60% of Nairobi's 5 million residents live in informal settlements occupying just 6% of city land. This visual series maps tenure insecurity, water access, income, and eviction risk across Nairobi's major settlements — making invisible populations legible to decision-makers.</p>
+          <div class="card-tags">
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Nairobi</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            27 Nov 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 6 -->
+      <article class="card" data-material-idx="5" data-category="infrastructure-financing" data-type="manual">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/6018652/pexels-photo-6018652.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Road construction workers laying asphalt in Africa" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-manual">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            Manual
+          </div>
+          <h2 class="card-title">Social Planning Framework: A Practitioner's Handbook for Infrastructure Projects in Kenya</h2>
+          <p class="card-desc">A step-by-step methodology for engineers, planners, and county officers integrating social planning into physical infrastructure — covering vulnerability assessment, stakeholder mapping, and social risk mitigation, with worked examples from Nairobi, Kisumu, and Mombasa.</p>
+          <div class="card-tags">
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Infrastructure Financing</span>
+            <span class="card-tag">Stakeholder Engagement</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            15 Oct 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 7 -->
+      <article class="card" data-material-idx="6" data-category="stakeholder-engagement" data-type="change-story">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/3892899/pexels-photo-3892899.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Women community group gathering outdoors" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-change-story">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Change Story
+          </div>
+          <h2 class="card-title">Women's Savings Groups as Urban Governance Infrastructure in Kisumu</h2>
+          <p class="card-desc">How three women-led savings groups in Obunga and Nyalenda transitioned from micro-credit circles to active participants in county budget processes and infrastructure planning committees — securing water infrastructure commitments from the Kisumu Water and Sewerage Company.</p>
+          <div class="card-tags">
+            <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Gender</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            03 Sep 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 8 -->
+      <article class="card" data-material-idx="7" data-category="infrastructure-financing" data-type="policy-brief">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/19982408/pexels-photo-19982408.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Construction workers at infrastructure site in Uganda" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-policy-brief">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Policy Brief
+          </div>
+          <h2 class="card-title">Financing Inclusive Urban Infrastructure in Kenya: Beyond Public Budgets</h2>
+          <p class="card-desc">Kenya's KES 2.7 trillion urban infrastructure deficit cannot be closed through government budgets alone. This brief maps community savings-linked finance, blended finance facilities, and impact investment vehicles — arguing social planning integration is a prerequisite, not an add-on.</p>
+          <div class="card-tags">
+            <span class="card-tag">Infrastructure Financing</span>
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Social Safeguards</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            20 Aug 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 9 -->
+      <article class="card" data-material-idx="8" data-category="social-safeguards" data-type="documentary">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/20563032/pexels-photo-20563032.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Urban waterfront and river corridor in city" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-documentary" style="background:#F3E8FF;color:#7E22CE;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            Documentary
+          </div>
+          <h2 class="card-title">Nairobi River Regeneration: Whose City Is It?</h2>
+          <p class="card-desc">Follows communities in Shauri Moyo, Kariobangi, and Kawangware as they engage Pamoja Trust's multi-stakeholder forum and navigate the gap between the Nairobi Rivers Commission's 27km regeneration vision and their own right to remain. 42,000 residents. 14 agencies. One process.</p>
+          <div class="card-tags">
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Urban Planning</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            11 Jul 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 10 -->
+      <article class="card" data-material-idx="9" data-category="stakeholder-engagement" data-type="case-study">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/8730123/pexels-photo-8730123.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Multi-stakeholder group meeting with documents" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type type-case-study">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Case Study
+          </div>
+          <h2 class="card-title">Urban Boards and Citizen Forums: Evidence from Nairobi and the Lake Region</h2>
+          <p class="card-desc">PASGR's Urban Governance House examines two parallel processes — Nairobi's ward-level citizen engagement structures and the Lake Region Economic Bloc's Citizen Engagement Framework — to identify when Urban Boards become genuine accountability mechanisms rather than consultative theatre.</p>
+          <div class="card-tags">
+            <span class="card-tag">Urban Governance</span>
+            <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Participatory Design</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            28 Jun 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 11 -->
+      <article class="card" data-material-idx="10" data-category="stakeholder-engagement" data-type="podcast">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/33923596/pexels-photo-33923596.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Podcast recording with microphone in studio" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type" style="background:#FFF7ED;color:#C2410C;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 8px;border-radius:20px;width:fit-content;margin-bottom:10px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><circle cx="12" cy="12" r="1"/><path d="M12 8v-2M12 18v-2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/><path d="M12 1a3 3 0 00-3 3v2a3 3 0 006 0V4a3 3 0 00-3-3z"/></svg>
+            Podcast
+          </div>
+          <h2 class="card-title">Urban Governance Unpacked: Pamoja Trust on Land, Rights, and the Kenyan City</h2>
+          <p class="card-desc">A three-part podcast series produced by PASGR in which Pamoja Trust practitioners, community organisers from Muungano wa Wanavijiji, and county government officials discuss land tenure security, social safeguards, and what devolution has — and has not — delivered for Nairobi's urban poor.</p>
+          <div class="card-tags">
+            <span class="card-tag">Urban Governance</span>
+            <span class="card-tag">Social Safeguards</span>
+            <span class="card-tag">Nairobi</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            04 May 2024
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 12 -->
+      <article class="card" data-material-idx="11" data-category="academia" data-type="public-lecture">
+        <div class="card-image">
+          <img class="card-pexels-img" src="https://images.pexels.com/photos/31820972/pexels-photo-31820972.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Lecture session with students in African classroom" loading="lazy">
+          <div class="card-image-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="content-type" style="background:#F0FDF4;color:#15803D;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 8px;border-radius:20px;width:fit-content;margin-bottom:10px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            Public Lecture
+          </div>
+          <h2 class="card-title">The Right to the City: A Public Lecture on Urban Justice in Kenya</h2>
+          <p class="card-desc">Delivered at the University of Nairobi, this lecture by PASGR and Pamoja Trust researchers examines the constitutional, planning, and political dimensions of the right to the city in Kenya — drawing on the Mukuru SPA, Mathare resettlement, and Nairobi River Regeneration as case anchors.</p>
+          <div class="card-tags">
+            <span class="card-tag">Urban Planning</span>
+            <span class="card-tag">Stakeholder Engagement</span>
+            <span class="card-tag">Social Safeguards</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            22 Apr 2024
+          </div>
+        </div>
+      </article>
+
+
+    </div><!-- /card-grid -->
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+
+  </div><!-- /container -->
+</main>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-logos">
+      <div class="footer-logo-placeholder" aria-label="Partner logo 1">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--gray-200)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="10" font-weight="700" fill="var(--gray-500)" font-family="sans-serif">LOGO</text></svg>
+        <span class="footer-logo-label">Pamoja Trust</span>
+      </div>
+      <div class="footer-logo-divider"></div>
+      <div class="footer-logo-placeholder" aria-label="Partner logo 2">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--gray-200)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="10" font-weight="700" fill="var(--gray-500)" font-family="sans-serif">LOGO</text></svg>
+        <span class="footer-logo-label">PASGR</span>
+      </div>
+    </div>
+    <div class="footer-desc">
+      <p>For the last three phases of the Utafiti Sera Urban Governance House, Pamoja Trust (PT) has generated evidence, mobilized communities, built professional networks, and contributed technical inputs to emerging policies. A strong foundation now exists; social safeguards guidelines, a social planning framework, a reader on stakeholder engagement, trained engineers and planners, empowered communities, and draft policy directions within government agencies.</p>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /page-frame -->
+
+<!-- ════════════════════════════════════════════════════════════
+     MODAL OVERLAY
+     ════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="materialModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-panel" id="modalPanel">
+
+    <!-- Hero Image -->
+    <div class="modal-hero">
+      <img class="modal-hero-bg" id="modalHeroBg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="modal-hero-overlay"></div>
+      <button class="modal-hero-close" id="modalClose" aria-label="Close modal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+    </div>
+
+    <!-- Scrollable Body -->
+    <div class="modal-body">
+
+      <!-- Type badge + quick actions -->
+      <div class="modal-top-row">
+        <div class="modal-type-badge" id="modalTypeBadge"></div>
+        <div class="modal-share-row">
+          <button class="modal-share-btn" id="modalShareLink" data-platform="link" title="Copy link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </button>
+          <button class="modal-share-btn" id="modalShareNative" data-platform="share" title="Share">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button class="modal-share-btn" id="modalShareWhatsApp" data-platform="whatsapp" title="Share on WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </button>
+          <button class="modal-share-btn" id="modalShareFacebook" data-platform="facebook" title="Share on Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </button>
+          <button class="modal-share-btn" id="modalShareTwitter" data-platform="twitter" title="Share on X / Twitter">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h2 class="modal-title" id="modalTitle"></h2>
+
+      <!-- Meta row -->
+      <div class="modal-meta-row">
+        <div class="modal-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span id="modalDate"></span>
+        </div>
+        <div class="modal-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span id="modalViews"></span> views
+        </div>
+        <div class="modal-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span id="modalDownloads"></span> downloads
+          </div>
+      </div>
+
+      <!-- Abstract -->
+      <p class="modal-section-label">Abstract</p>
+      <p class="modal-abstract" id="modalAbstract"></p>
+
+      <!-- Key Findings -->
+      <div class="modal-findings" id="modalFindings">
+        <div class="modal-findings-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Key Findings
+        </div>
+        <ul id="modalFindingsList"></ul>
+      </div>
+
+      <!-- Stats -->
+      <div class="modal-stats" id="modalStats"></div>
+
+      <!-- Tags -->
+      <div class="modal-tags-section">
+        <p class="modal-section-label">Tags</p>
+        <div class="modal-tags-wrap" id="modalTagsWrap"></div>
+      </div>
+
+    </div><!-- /modal-body -->
+
+    <!-- Footer CTA -->
+    <div class="modal-footer">
+      <div class="modal-footer-left">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span id="modalFileInfo"></span>
+      </div>
+        <button class="btn-modal-secondary" id="modalDownloadBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </button>
+        <button class="btn-modal-primary" id="modalViewBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Full Material
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /modal-panel -->
+</div><!-- /modal-overlay -->
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon"></span>
+  <span id="toastMsg"></span>
+</div>
+
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   CARD DATA STORE  –  one object per material card
+   ═══════════════════════════════════════════════════════════════ */
+const MATERIALS = [
+  {
+    id: 0,
+    type: 'Change Story',
+    typeClass: 'type-change-story',
+    typeBg: '#DBEAFE', typeColor: '#2563EB',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    title: 'From Informal to Formal: Nairobi\'s Community Land Trust Model',
+    abstract: `In the dense neighbourhood of Mathare, Nairobi, a decade-long grassroots coalition transformed insecure, informally held land into legally recognised community land ownership. This change story traces the journey from eviction threats in 2013 through the formation of the Mathare Community Land Trust in 2018 to the landmark municipal gazette notice of 2022. It documents the political negotiations, legal innovations, and coalition-building strategies that made the shift possible — and the fragile sustainability conditions that still govern the trust today. Lessons from Nairobi are being adapted in Kisumu, Mombasa, and across three East African cities.`,
+    findings: [
+      'Community-led tenure security reduced forced eviction risk by 78% across 6 pilot zones.',
+      'CLT model catalysed KES 340M in neighbourhood reinvestment within three years of gazette.',
+      'Women-led savings circles were the primary governance vehicle in 4 of 5 pilot clusters.',
+      'Municipal co-design process took 22 months — legal templates now cut this to 8 months.'
+    ],
+    stats: [{ v: '340M', l: 'KES Reinvested' }, { v: '6', l: 'Pilot Zones' }, { v: '78%', l: 'Eviction Risk Drop' }],
+    tags: ['Land Use', 'Stakeholder Engagement', 'Housing Policy', 'Community Tenure', 'East Africa', 'Utafiti Sera House'],
+    author: 'Amara Wanjiku', authorInitials: 'AW', authorColor: '#2563EB',
+    date: '14 Mar 2025', views: '2,418', downloads: '384', readTime: '12 min',
+    fileInfo: 'PDF · 2.4 MB · 18 pages'
+  },
+  {
+    id: 1,
+    type: 'Policy Brief',
+    typeClass: 'type-policy-brief',
+    typeBg: '#EDE9FE', typeColor: '#7C3AED',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    title: 'Adaptive Climate Zoning Regulations for Coastal Cities',
+    abstract: `Rising sea levels and extreme weather events are outpacing the static land-use frameworks that govern most coastal cities in Southeast and South Asia. This policy brief synthesises findings from Jakarta, Bangkok, Manila, and Ho Chi Minh City to propose a dynamic zoning code architecture that can be updated on rolling five-year cycles tied to IPCC projection updates. Central to the proposal is a three-tier flood-risk overlay system with differentiated development rights, mandatory elevation standards, and a managed retreat protocol for the highest-risk zones. The brief also addresses political economy obstacles and proposes municipal insurance mechanisms to facilitate buy-in from property owners.`,
+    findings: [
+      'Static zoning codes leave 34% of coastal land in high-risk zones without regulatory protection.',
+      'Dynamic overlay systems reduced flood-damage claims by 41% in Bangkok pilot districts (2019–2023).',
+      'Managed retreat protocols require 18–36 months of community co-design to achieve social licence.',
+      'Municipal climate bonds can fund relocation at USD 2,400 per household — below emergency response costs.'
+    ],
+    stats: [{ v: '4', l: 'Cities Studied' }, { v: '41%', l: 'Damage Reduction' }, { v: '34%', l: 'Unprotected Zones' }],
+    tags: ['Climate Change', 'Adaptive Planning', 'Urban Resilience', 'Coastal Policy', 'Southeast Asia', 'Utafiti Sera House'],
+    author: 'Reza Purnomo', authorInitials: 'RP', authorColor: '#7C3AED',
+    date: '02 Feb 2025', views: '3,172', downloads: '621', readTime: '9 min',
+    fileInfo: 'PDF · 1.8 MB · 14 pages'
+  },
+  {
+    id: 2,
+    type: 'Interview',
+    typeClass: 'type-interview',
+    typeBg: '#D1FAE5', typeColor: '#059669',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+    title: 'In Conversation: Mayor Chen on Inclusive Smart City Design',
+    abstract: `Taipei's Deputy Mayor for Urban Innovation, Sofia Chen, sits down with UGH's senior researcher to discuss what five years of implementing smart city programmes in a dense, diverse metropolis has taught her team about digital equity. The conversation covers Taipei's universal digital ID rollout, the co-design process for its neighbourhood data dashboards, and the unexpected social tensions that arose when algorithmic service allocation replaced discretionary caseworker decisions. Chen is candid about failures and what the city would do differently, offering rare practitioner candour for a policy audience.`,
+    findings: [
+      'Participatory co-design with marginalised groups added 7 months to rollout but improved adoption by 3×.',
+      'Algorithmic benefit allocation produced a 12% uptake drop among elderly residents — reversed by hybrid model.',
+      'Digital literacy programmes at community centres increased smart-service usage by 58% in target wards.',
+      'Governance structure: independent digital equity ombudsperson proved critical for public trust.'
+    ],
+    stats: [{ v: '3×', l: 'Adoption Increase' }, { v: '58%', l: 'Usage Uplift' }, { v: '2.3M', l: 'Residents Covered' }],
+    tags: ['Digital Governance', 'Inclusive Growth', 'Smart Cities', 'Taiwan', 'Co-Design', 'Utafiti Sera House'],
+    author: 'Sofia Chen', authorInitials: 'SC', authorColor: '#059669',
+    date: '18 Jan 2025', views: '4,891', downloads: '702', readTime: '15 min',
+    fileInfo: 'PDF · 1.1 MB · 11 pages'
+  },
+  {
+    id: 3,
+    type: 'Case Study',
+    typeClass: 'type-case-study',
+    typeBg: '#FEF3C7', typeColor: '#D97706',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    title: 'Medellín\'s Urban Acupuncture: Targeted Investments in Informal Settlements',
+    abstract: `Between 2004 and 2019, Medellín pursued a strategy of targeted public-space investments in its most marginalised comunas — a philosophy its planners called "urban acupuncture." This case study examines how cable cars, outdoor escalators, library parks, and pedestrian bridges in comunas 1, 2, and 13 catalysed social mobility, dramatically reduced homicide rates, and strengthened neighbourhood fiscal capacity. Drawing on 15 years of administrative data and 62 resident interviews, the study assesses which interventions delivered lasting change, which ones stalled, and what the Medellín model can and cannot be transferred to other Latin American cities.`,
+    findings: [
+      'Homicide rate in targeted comunas fell 95% between 2002 and 2016 — steeper than citywide trends.',
+      'Library parks generated 340 formal jobs and 1,200 informal livelihoods within 500-metre catchments.',
+      'Cable car accessibility raised property values 18–24% while displacing fewer than 2% of residents.',
+      'Political continuity across three mayoral terms was the single most important enabling factor.'
+    ],
+    stats: [{ v: '95%', l: 'Crime Reduction' }, { v: '1,540', l: 'Jobs Created' }, { v: '15yr', l: 'Study Period' }],
+    tags: ['Participatory Design', 'Infrastructure', 'Social Safeguards', 'Colombia', 'Urban Mobility', 'Utafiti Sera House'],
+    author: 'Luis Mendoza', authorInitials: 'LM', authorColor: '#D97706',
+    date: '09 Dec 2024', views: '5,234', downloads: '1,043', readTime: '22 min',
+    fileInfo: 'PDF · 4.2 MB · 34 pages'
+  },
+  {
+    id: 4,
+    type: 'Infographic',
+    typeClass: 'type-infographic',
+    typeBg: '#FEE2E2', typeColor: '#DC2626',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+    title: 'Global Urban Heat Island Index 2024: Comparative City Analysis',
+    abstract: `This visual data resource presents the Urban Governance House Heat Island Index for 60 cities across the Global South, combining satellite land surface temperature data, urban green cover ratios, reflective surface inventories, and cooling infrastructure investment figures. Cities are ranked on a composite vulnerability score and mapped against per-capita municipal budget available for heat mitigation. The infographic set — 8 data visualisations and 3 interactive maps — is designed for use in municipal briefings, climate finance applications, and public advocacy campaigns.`,
+    findings: [
+      'Cities in the top heat-vulnerability quartile have on average 4.2× less green cover than low-vulnerability peers.',
+      'Cooling infrastructure investment averages USD 3.10 per capita across all 60 cities — range: USD 0.40–USD 28.',
+      'Night-time heat retention (a health-risk multiplier) correlates 0.82 with impervious surface ratio.',
+      'Eight cities have committed to measurable heat-island reduction targets in NDC updates since 2022.'
+    ],
+    stats: [{ v: '60', l: 'Cities Mapped' }, { v: '8', l: 'Visualisations' }, { v: '3', l: 'Interactive Maps' }],
+    tags: ['Climate Change', 'Urban Resilience', 'Data Visualisation', 'Heat Islands', 'Global South', 'Utafiti Sera House'],
+    author: 'Nadia Kovacs', authorInitials: 'NK', authorColor: '#DC2626',
+    date: '27 Nov 2024', views: '6,101', downloads: '1,887', readTime: '7 min',
+    fileInfo: 'PDF + SVG pack · 8.6 MB · 24 pages'
+  },
+  {
+    id: 5,
+    type: 'Manual',
+    typeClass: 'type-manual',
+    typeBg: '#E0F2FE', typeColor: '#0369A1',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+    title: 'Practitioner\'s Handbook for Community Needs Assessments',
+    abstract: `Effective community needs assessments are the foundation of equitable urban interventions — yet they are frequently rushed, extractive, or technically inaccessible to the communities they are meant to serve. This handbook provides urban practitioners with step-by-step guidance for designing and facilitating participatory needs assessments in low-income settlements. It includes 14 tool templates (survey instruments, focus group guides, community mapping protocols, and ranking exercises), facilitation scripts, and a quality-assurance checklist. The handbook has been field-tested in 11 cities across Sub-Saharan Africa and South Asia.`,
+    findings: [
+      'Participatory mapping sessions consistently surface 40–60% more service gaps than structured survey alone.',
+      'Female-only focus group sub-sessions raised safety and health disclosures by 3.4× in pilot sites.',
+      'Community co-analysis of findings increases local uptake of recommendations from 28% to 71%.',
+      'A 5-day facilitated assessment cycle (vs 3-day) improved data quality scores by 38% on average.'
+    ],
+    stats: [{ v: '14', l: 'Tool Templates' }, { v: '11', l: 'Cities Tested' }, { v: '71%', l: 'Recommendation Uptake' }],
+    tags: ['Stakeholder Engagement', 'Participatory Design', 'Community Health', 'Practitioner Tools', 'Utafiti Sera House'],
+    author: 'Taiwo Okafor', authorInitials: 'TO', authorColor: '#0369A1',
+    date: '15 Oct 2024', views: '3,780', downloads: '1,204', readTime: '45 min',
+    fileInfo: 'PDF · 6.1 MB · 88 pages'
+  },
+  {
+    id: 6,
+    type: 'Change Story',
+    typeClass: 'type-change-story',
+    typeBg: '#DBEAFE', typeColor: '#2563EB',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    title: 'Women-Led Savings Groups as Urban Governance Catalysts in Dhaka',
+    abstract: `In the Korail slum of Dhaka — home to over 100,000 people on disputed land — rotating savings associations led by women have evolved far beyond their original financial function. This change story traces how seven savings groups consolidated into a neighbourhood governance structure between 2016 and 2023, eventually securing formal municipal recognition, negotiating improved sanitation services, and establishing a community-run early childhood centre. The story explores the personal and political risks taken by group leaders and the role of a local NGO in supporting without directing the process.`,
+    findings: [
+      '7 savings groups merged into a single governance body representing 4,200 households.',
+      'Formal municipal recognition secured after 3 years of sustained advocacy and documentation.',
+      'Sanitation coverage in target area rose from 34% to 89% following service negotiation.',
+      'Community-run ECD centre now serves 280 children, reducing drop-out rates at primary level.'
+    ],
+    stats: [{ v: '4,200', l: 'Households' }, { v: '89%', l: 'Sanitation Coverage' }, { v: '280', l: 'Children in ECD' }],
+    tags: ['Social Safeguards', 'Inclusive Growth', 'Women Leadership', 'Bangladesh', 'Governance', 'Utafiti Sera House'],
+    author: 'Farida Rahman', authorInitials: 'FR', authorColor: '#4338CA',
+    date: '03 Sep 2024', views: '2,891', downloads: '489', readTime: '14 min',
+    fileInfo: 'PDF · 1.9 MB · 16 pages'
+  },
+  {
+    id: 7,
+    type: 'Policy Brief',
+    typeClass: 'type-policy-brief',
+    typeBg: '#EDE9FE', typeColor: '#7C3AED',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    title: 'Green Infrastructure Finance: Blended Mechanisms for Nature-Based Solutions',
+    abstract: `Municipal governments in the Global South face a paradox: nature-based infrastructure is often the most cost-effective long-term investment available, yet it struggles to attract private capital due to diffuse revenue streams and long payback horizons. This policy brief reviews emerging blended finance mechanisms — municipal green bonds, biodiversity credit markets, development bank co-financing, and impact-linked payment structures — and assesses their applicability for urban nature-based solutions programmes in cities with limited fiscal capacity and nascent capital markets.`,
+    findings: [
+      'Green bonds for urban NbS have raised USD 4.2B globally since 2017 — 94% in OECD countries.',
+      'Biodiversity credit pilots in 3 African cities generated USD 1.1M for urban wetland restoration.',
+      'Blended finance structures reduced cost of capital for NbS from 9.4% to 5.8% in pilot programmes.',
+      'Impact-linked disbursement triggered higher delivery quality scores in 7 of 8 reviewed contracts.'
+    ],
+    stats: [{ v: '$4.2B', l: 'Green Bonds Raised' }, { v: '3', l: 'Credit Pilots' }, { v: '5.8%', l: 'Blended Finance Rate' }],
+    tags: ['Climate Change', 'Infrastructure', 'Adaptive Planning', 'Green Finance', 'Nature-Based Solutions', 'Utafiti Sera House'],
+    author: 'Elena Vargas', authorInitials: 'EV', authorColor: '#0D9488',
+    date: '20 Aug 2024', views: '2,234', downloads: '398', readTime: '10 min',
+    fileInfo: 'PDF · 1.4 MB · 12 pages'
+  },
+  {
+    id: 8,
+    type: 'Documentary',
+    typeClass: 'type-documentary',
+    typeBg: '#F3E8FF', typeColor: '#7E22CE',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>`,
+    title: 'Voices of the Waterfront: Lagos and the Politics of Demolition',
+    abstract: `In March 2017, Lagos State authorities demolished the Otodo-Gbame waterfront settlement, displacing an estimated 30,000 residents with fewer than 24 hours' notice. This 38-minute documentary follows three residents — a fish trader, a school teacher, and a community organiser — through the demolition, their experiences in the chaotic relocation process, and their lives four years later. Shot over four years across three locations, the film is a rare long-form account of what forced eviction looks, sounds, and feels like from the inside, and a testament to the resilience of communities the state considers expendable.`,
+    findings: [
+      'All three subjects remained within 4km of original site — counter to government relocation projections.',
+      'Children\'s school enrolment dropped 62% in year one post-demolition; recovered to 78% by year three.',
+      'Informal savings networks were the primary economic resilience mechanism for all displaced families.',
+      'Documentary has been screened in 14 countries and submitted to four national parliamentary inquiries.'
+    ],
+    stats: [{ v: '38', l: 'Minutes Runtime' }, { v: '4yr', l: 'Production Span' }, { v: '14', l: 'Countries Screened' }],
+    tags: ['Social Safeguards', 'Housing Policy', 'Stakeholder Engagement', 'Nigeria', 'Forced Eviction', 'Utafiti Sera House'],
+    author: 'Ola Adeyemi', authorInitials: 'OA', authorColor: '#E11D48',
+    date: '11 Jul 2024', views: '7,443', downloads: '2,318', readTime: '38 min',
+    fileInfo: 'MP4 stream · Subtitles: EN, FR, PT · 38 min'
+  },
+  {
+    id: 9,
+    type: 'Case Study',
+    typeClass: 'type-case-study',
+    typeBg: '#FEF3C7', typeColor: '#D97706',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    title: 'Participatory Budget Allocation in Porto Alegre: A 30-Year Review',
+    abstract: `Porto Alegre's participatory budgeting (PB) programme, launched in 1989 under the Workers' Party, became the most studied urban governance experiment of the late 20th century. Three decades later, after multiple political transitions, a COVID-induced hiatus, and significant institutional reform, this longitudinal case study asks: what has PB actually delivered, and what does its survival — in a changed form — tell us about the conditions under which participatory governance endures? Drawing on 30 years of budget allocations, participation records, and survey data, the study offers a clear-eyed assessment that goes beyond both the programme's champions and its critics.`,
+    findings: [
+      'Real investment in lowest-income districts rose 68% in the programme\'s first decade.',
+      'Participation peaked at 40,000 delegates in 2002; stabilised at ~18,000 in the post-2016 reformed model.',
+      'PB allocations consistently over-indexed basic sanitation (38% of total) vs. city-wide average (22%).',
+      'Political transition to right-of-centre government in 2004 reduced PB budget share from 21% to 9%.'
+    ],
+    stats: [{ v: '30yr', l: 'Study Period' }, { v: '68%', l: 'Investment Increase' }, { v: '40K', l: 'Peak Delegates' }],
+    tags: ['Participatory Design', 'Inclusive Growth', 'Brazil', 'Democratic Governance', 'Budget', 'Utafiti Sera House'],
+    author: 'Marco Braga', authorInitials: 'MB', authorColor: '#475569',
+    date: '28 Jun 2024', views: '4,112', downloads: '963', readTime: '28 min',
+    fileInfo: 'PDF · 5.3 MB · 42 pages'
+  },
+  {
+    id: 10,
+    type: 'Interview',
+    typeClass: 'type-interview',
+    typeBg: '#D1FAE5', typeColor: '#059669',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+    title: 'Scaling Nature-Based Solutions: A Conversation with UN-Habitat',
+    abstract: `UN-Habitat's Chief of Urban Practice, Dr. Yuki Suzuki, speaks with UGH about the state of evidence for urban nature-based solutions and the practical barriers to scaling them from pilot to policy. The conversation traverses urban forests in Addis Ababa, sponge city frameworks in Wuhan, and coastal wetland restoration in Dhaka — examining in each case what the science says, what implementation actually looks like on the ground, and what financing mechanisms have proven most durable. Dr. Suzuki is notably candid about gaps in the evidence base and the risk of NbS being co-opted as a greenwashing mechanism.`,
+    findings: [
+      'Urban forests delivering measurable cooling require a minimum threshold of 22% canopy cover per ward.',
+      'Sponge city frameworks reduce surface runoff by 30–50% when applied at district scale, per Wuhan data.',
+      'Fewer than 12% of NbS pilots globally have been independently evaluated at scale post-implementation.',
+      'Long-term maintenance costs are the primary failure point — typically not budgeted beyond year 3.'
+    ],
+    stats: [{ v: '22%', l: 'Canopy Threshold' }, { v: '50%', l: 'Runoff Reduction' }, { v: '12%', l: 'Independently Evaluated' }],
+    tags: ['Climate Change', 'Urban Resilience', 'Infrastructure', 'Nature-Based Solutions', 'UN-Habitat', 'Utafiti Sera House'],
+    author: 'Yuki Suzuki', authorInitials: 'YS', authorColor: '#65A30D',
+    date: '04 May 2024', views: '3,561', downloads: '712', readTime: '16 min',
+    fileInfo: 'PDF · 1.3 MB · 13 pages'
+  },
+  {
+    id: 11,
+    type: 'Manual',
+    typeClass: 'type-manual',
+    typeBg: '#E0F2FE', typeColor: '#0369A1',
+    typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+    title: 'Digital Identity Systems for Urban Service Delivery: Implementation Guide',
+    abstract: `As cities in the Global South accelerate digital transformation of public services, the question of how to extend these services equitably to residents who lack formal identification documents has become urgent. This implementation guide provides municipalities with practical frameworks for deploying biometric and digital ID systems in ways that protect data privacy, prevent exclusion of the most vulnerable, and comply with emerging international data governance standards. It is structured around a phased rollout model with decision trees, vendor assessment criteria, community consultation protocols, and safeguard audit checklists.`,
+    findings: [
+      'Biometric enrolment without outreach support excludes 28–41% of target populations in pilot cities.',
+      'Privacy impact assessments conducted before procurement reduce post-rollout incidents by 64%.',
+      'Community-managed data centres outperformed centralised alternatives on both uptime and trust metrics.',
+      'No-ID fallback pathways increased overall service uptake by 19% without compromising system integrity.'
+    ],
+    stats: [{ v: '64%', l: 'Incident Reduction' }, { v: '19%', l: 'Uptake Increase' }, { v: '5', l: 'Implementation Phases' }],
+    tags: ['Digital Governance', 'Social Safeguards', 'Data Privacy', 'Service Delivery', 'Implementation', 'Utafiti Sera House'],
+    author: 'Priya Krishnan', authorInitials: 'PK', authorColor: '#0891B2',
+    date: '22 Apr 2024', views: '2,988', downloads: '834', readTime: '50 min',
+    fileInfo: 'PDF · 7.2 MB · 96 pages'
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   MODAL ENGINE
+   ═══════════════════════════════════════════════════════════════ */
+const overlay   = document.getElementById('materialModal');
+const panel     = document.getElementById('modalPanel');
+const closeBtn  = document.getElementById('modalClose');
+let currentIdx  = 0;
+
+const PEXELS_IDS = [17931802,373912,30690397,2458028,259987,4575148,3892899,242133,20563032,5802549,29254941,11645013];
+
+function openModal(idx) {
+  currentIdx = idx;
+  populateModal(MATERIALS[idx]);
+  overlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  // reset scroll
+  panel.querySelector('.modal-body').scrollTop = 0;
+  // focus trap seed
+  setTimeout(() => closeBtn.focus(), 320);
+}
+
+function closeModal() {
+  overlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+function populateModal(m) {
+  // Hero
+  const heroEl = document.getElementById('modalHeroBg');
+  heroEl.src = `https://images.pexels.com/photos/${PEXELS_IDS[currentIdx]}/pexels-photo-${PEXELS_IDS[currentIdx]}.jpeg?auto=compress&cs=tinysrgb&w=900&h=400&fit=crop`;
+  heroEl.alt = m.title;
+
+  // Type badge
+  const badge = document.getElementById('modalTypeBadge');
+  badge.style.background = m.typeBg;
+  badge.style.color = m.typeColor;
+  badge.innerHTML = `${m.typeIcon} ${m.type}`;
+
+  // Title
+  document.getElementById('modalTitle').textContent = m.title;
+
+  // Meta
+  document.getElementById('modalDate').textContent = m.date;
+  document.getElementById('modalViews').textContent = m.views;
+  document.getElementById('modalDownloads').textContent = m.downloads;
+
+
+  // Abstract
+  document.getElementById('modalAbstract').textContent = m.abstract;
+
+  // Findings
+  const ul = document.getElementById('modalFindingsList');
+  ul.innerHTML = m.findings.map(f => `<li>${f}</li>`).join('');
+
+  // Stats
+  const statsEl = document.getElementById('modalStats');
+  statsEl.innerHTML = m.stats.map(s =>
+    `<div class="modal-stat">
+      <div class="modal-stat-value">${s.v}</div>
+      <div class="modal-stat-label">${s.l}</div>
+    </div>`
+  ).join('');
+
+  // Tags
+  const tagsEl = document.getElementById('modalTagsWrap');
+  tagsEl.innerHTML = m.tags.map(t =>
+    `<button class="modal-tag" onclick="showToast('Filtering by: ${t}')">${t}</button>`
+  ).join('');
+
+  // File info
+  document.getElementById('modalFileInfo').textContent = m.fileInfo;
+
+}
+
+// Close events
+closeBtn.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => {
+  if (!overlay.classList.contains('is-open')) return;
+  if (e.key === 'Escape') closeModal();
+});
+
+
+
+// Share handlers
+document.getElementById('modalShareLink').addEventListener('click', () => {
+  navigator.clipboard.writeText(window.location.href).catch(() => {});
+  showToast('Link copied to clipboard!');
+});
+
+document.getElementById('modalShareNative').addEventListener('click', async () => {
+  const m = MATERIALS[currentIdx];
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: m.title, text: m.abstract, url: window.location.href });
+    } catch (e) { /* user cancelled */ }
+  } else {
+    navigator.clipboard.writeText(window.location.href).catch(() => {});
+    showToast('Link copied to clipboard!');
+  }
+});
+
+document.getElementById('modalShareWhatsApp').addEventListener('click', () => {
+  const m = MATERIALS[currentIdx];
+  const text = encodeURIComponent(`${m.title} – ${window.location.href}`);
+  window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener');
+});
+
+document.getElementById('modalShareFacebook').addEventListener('click', () => {
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'noopener,width=600,height=400');
+});
+
+document.getElementById('modalShareTwitter').addEventListener('click', () => {
+  const m = MATERIALS[currentIdx];
+  const text = encodeURIComponent(`${m.title.slice(0,80)} ${window.location.href}`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,width=600,height=400');
+});
+
+// Download
+document.getElementById('modalDownloadBtn').addEventListener('click', () => {
+  const m = MATERIALS[currentIdx];
+  showToast(`Downloading: ${m.fileInfo}`);
+});
+
+// View Full
+document.getElementById('modalViewBtn').addEventListener('click', () => {
+  showToast('Opening full material…');
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   WIRE CARDS TO MODAL
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.card').forEach((card) => {
+  const idx = parseInt(card.dataset.materialIdx);
+  card.setAttribute('role', 'button');
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('aria-label', `Open details: ${MATERIALS[idx]?.title || ''}`);
+  card.style.cursor = 'pointer';
+
+  card.addEventListener('click', (e) => {
+    openModal(parseInt(card.dataset.materialIdx));
+  });
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(parseInt(card.dataset.materialIdx)); }
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   EXISTING UI INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */
+/* Active filter state */
+let activeCategory = 'all';
+
+function switchTab(el) {
+  document.querySelectorAll('.cat-tab').forEach(t => {
+    t.classList.remove('cat-tab--active');
+    t.classList.add('cat-tab--inactive');
+    t.setAttribute('aria-selected', 'false');
+  });
+  el.classList.remove('cat-tab--inactive');
+  el.classList.add('cat-tab--active');
+  el.setAttribute('aria-selected', 'true');
+  activeCategory = el.dataset.category || 'all';
+  currentPage = 1;
+  const locked = activeCategory === 'all';
+  document.getElementById('typeFilterGroup').classList.toggle('tag-filter-group--locked', locked);
+  document.getElementById('typeChipsWrap').classList.toggle('tag-chips-wrap--locked', locked);
+  // Clear type chips on every category change
+  document.querySelectorAll('.tag-chip--type').forEach(c => c.classList.remove('tag-chip--active'));
+  filterAndRender();
+}
+
+function toggleTag(el) {
+  el.classList.toggle('tag-chip--active');
+  filterAndRender();
+}
+
+const CARDS_PER_PAGE = 9;
+let currentPage = 1;
+
+/* Category tab → card data-category mapping. Tags on cards are purely informational. */
+const CATEGORY_TAGS = {
+  'all': null,
+  'academia': ['academia'],
+  'social-safeguards': ['social-safeguards'],
+  'adaptive-planning': ['adaptive-planning'],
+  'utafiti-sera': ['utafiti-sera']
+};
+
+function updateTabBadges() {
+  const allCards = [...document.querySelectorAll('.card')];
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    const catValues = CATEGORY_TAGS[tab.dataset.category];
+    const count = catValues
+      ? allCards.filter(card => catValues.includes(card.dataset.category)).length
+      : allCards.length;
+    const badge = tab.querySelector('.cat-tab-badge');
+    if (badge) badge.textContent = count;
+  });
+}
+
+function filterAndRender() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const activeTypes = [...document.querySelectorAll('.tag-chip--type.tag-chip--active')]
+    .map(el => el.dataset.type);
+  const catValues = CATEGORY_TAGS[activeCategory];
+  const allCards = [...document.querySelectorAll('.card')];
+
+  // Determine which cards match the current filters
+  const matching = allCards.filter(card => {
+    const idx = parseInt(card.dataset.materialIdx);
+    const m = MATERIALS[idx];
+    if (!m) return false;
+    const catMatch = !catValues || catValues.includes(card.dataset.category);
+    const typeMatch = activeTypes.length === 0 || activeTypes.includes(card.dataset.type);
+    const searchMatch = !query ||
+      m.title.toLowerCase().includes(query) ||
+      m.abstract.toLowerCase().includes(query) ||
+      m.tags.some(t => t.toLowerCase().includes(query));
+    return catMatch && typeMatch && searchMatch;
+  });
+
+  const total = matching.length;
+  const totalPages = Math.max(1, Math.ceil(total / CARDS_PER_PAGE));
+  if (currentPage > totalPages) currentPage = 1;
+
+  const pageStart = (currentPage - 1) * CARDS_PER_PAGE;
+  const pageEnd   = pageStart + CARDS_PER_PAGE;
+
+  // Show only cards on the current page; hide everything else
+  allCards.forEach(card => card.style.display = 'none');
+  matching.slice(pageStart, pageEnd).forEach(card => card.style.display = '');
+
+  // Results count
+  const showing = Math.min(CARDS_PER_PAGE, total - pageStart);
+  const from = total === 0 ? 0 : pageStart + 1;
+  const to   = pageStart + showing;
+  document.querySelector('.results-count').innerHTML =
+    total === 0
+      ? '<strong>No results</strong> match your filters'
+      : `Showing <strong>${from}–${to}</strong> of <strong>${total}</strong> result${total === 1 ? '' : 's'}`;
+
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+  const container = document.getElementById('pagination');
+  if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+  const PREV_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+  const NEXT_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+
+  // Build page number list with ellipsis
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+      pages.push(i);
+    } else if (pages[pages.length - 1] !== '…') {
+      pages.push('…');
+    }
+  }
+
+  let html = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">${PREV_SVG}</button>`;
+  pages.forEach(p => {
+    if (p === '…') {
+      html += `<span style="padding:0 4px;color:var(--gray-400);font-size:14px">…</span>`;
+    } else {
+      html += `<button class="page-btn${p === currentPage ? ' active' : ''}" onclick="goToPage(${p})">${p}</button>`;
+    }
+  });
+  html += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">${NEXT_SVG}</button>`;
+  container.innerHTML = html;
+}
+
+function goToPage(page) {
+  currentPage = page;
+  filterAndRender();
+  window.scrollTo({ top: document.querySelector('.card-grid').offsetTop - 120, behavior: 'smooth' });
+}
+
+function changePage(el) {
+  // legacy no-op kept for safety
+}
+
+function sortCards(order) {
+  const grid = document.querySelector('.card-grid');
+  const cards = [...grid.querySelectorAll('.card')];
+  cards.sort((a, b) => {
+    const ma = MATERIALS[parseInt(a.dataset.materialIdx)];
+    const mb = MATERIALS[parseInt(b.dataset.materialIdx)];
+    if (!ma || !mb) return 0;
+    if (order === 'oldest') return new Date(ma.date) - new Date(mb.date);
+    if (order === 'title-az') return ma.title.localeCompare(mb.title);
+    if (order === 'downloads') return parseInt(mb.downloads.replace(/,/g,'')) - parseInt(ma.downloads.replace(/,/g,''));
+    return new Date(mb.date) - new Date(ma.date); // newest default
+  });
+  cards.forEach(card => grid.appendChild(card));
+}
+
+document.querySelectorAll('.view-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Wire search input
+document.getElementById('searchInput').addEventListener('input', () => { currentPage = 1; filterAndRender(); });
+
+// Wire sort select
+document.querySelector('.sort-select').addEventListener('change', function() {
+  const map = {
+    'Date (Newest First)': 'newest',
+    'Date (Oldest First)': 'oldest',
+    'Title A → Z': 'title-az',
+    'Most Downloaded': 'downloads'
+  };
+  currentPage = 1;
+  sortCards(map[this.value] || 'newest');
+  filterAndRender();
+});
+
+// Card entrance animation
+updateTabBadges();
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, (parseInt(entry.target.dataset.idx) || 0) * 55);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+cards.forEach((card, i) => {
+  card.dataset.idx = i % 3;
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(18px)';
+  card.style.transition = `opacity .4s ease, transform .4s ease, box-shadow .22s, border-color .22s`;
+  observer.observe(card);
+});
+/* ═══════════════════════════════════════════════════════════════
+   HAMBURGER / MOBILE NAV
+   ═══════════════════════════════════════════════════════════════ */
+const hamburger   = document.getElementById('navHamburger');
+const mobileDrawer = document.getElementById('mobileNavDrawer');
+const mobileScrim  = document.getElementById('mobileNavScrim');
+
+function openMobileNav() {
+  hamburger.classList.add('is-open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  mobileDrawer.classList.add('is-open');
+  mobileDrawer.setAttribute('aria-hidden', 'false');
+  mobileScrim.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileNav() {
+  hamburger.classList.remove('is-open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileDrawer.classList.remove('is-open');
+  mobileDrawer.setAttribute('aria-hidden', 'true');
+  mobileScrim.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  if (mobileDrawer.classList.contains('is-open')) closeMobileNav();
+  else openMobileNav();
+});
+mobileScrim.addEventListener('click', closeMobileNav);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobileDrawer.classList.contains('is-open')) closeMobileNav();
+});
+// Close drawer when a nav link is tapped
+mobileDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
+
+
+</script>
+</body>
+</html>
 
