@@ -74,6 +74,11 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
 .card-pexels-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
 .card:hover .card-pexels-img { transform: scale(1.04); }
 .card-image-overlay { position: absolute; inset: 0px; background: linear-gradient(transparent 40%, rgba(15, 23, 42, 0.18) 100%); pointer-events: none; }
+.modal-hero-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.25); cursor: pointer; border: none; width: 100%; padding: 0; z-index: 2; transition: background 0.18s; }
+.modal-hero-play:hover { background: rgba(0,0,0,0.4); }
+.modal-hero-play svg { width: 64px; height: 64px; filter: drop-shadow(0 2px 12px rgba(0,0,0,0.4)); transition: transform 0.15s; }
+.modal-hero-play:hover svg { transform: scale(1.08); }
+.modal-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #000; z-index: 3; }
 .card-body { padding: 16px 18px 0px; flex: 1 1 0%; display: flex; flex-direction: column; gap: 10px; }
 .content-type { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: var(--radius-full); font-size: 11.5px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; width: fit-content; }
 .type-change-story { background: var(--blue-100); color: var(--blue-600); }
@@ -259,16 +264,15 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
   .modal-panel { transform: none !important; }
 }
  background: var(--white); border-top: 1px solid var(--gray-200); padding: var(--sp-5) 0; margin-top: 0; }
-.footer-inner { display: flex; align-items: flex-start; gap: var(--sp-5); }
-.footer-logos { display: flex; align-items: center; gap: var(--sp-2); flex-shrink: 0; }
+.footer-inner { display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); padding-bottom: var(--sp-6); }
+.footer-logos { display: flex; align-items: center; gap: var(--sp-2); justify-content: center; flex-shrink: 0; }
 .footer-logo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .footer-logo-label { font-size: 11px; font-weight: 500; color: var(--gray-400); white-space: nowrap; }
 .footer-logo-divider { width: 1px; height: 40px; background: var(--gray-200); margin: 0 4px; }
-.footer-desc { flex: 1 1 0%; border-left: 1px solid var(--gray-200); padding-left: var(--sp-4); }
-.footer-desc p { font-size: 13.5px; color: var(--gray-500); line-height: 1.72; max-width: 680px; }
+.footer-desc { width: 100%; border-top: 1px solid var(--gray-200); padding-top: var(--sp-3); text-align: center; }
+.footer-desc p { font-size: 13.5px; color: var(--gray-500); line-height: 1.72; max-width: 680px; margin: 0 auto; }
 @media (max-width: 639px) {
-  .footer-inner { flex-direction: column; gap: var(--sp-3); }
-  .footer-desc { border-left: none; border-top: 1px solid var(--gray-200); padding-left: 0; padding-top: var(--sp-3); }
+
 }
 </style>
 </head>
@@ -808,13 +812,15 @@ body { font-family: var(--font-body); background: var(--gray-50); color: var(--g
   <div class="modal-panel" id="modalPanel">
 
     <!-- Hero Image -->
-    <div class="modal-hero">
+    <div class="modal-hero" id="modalHero">
       <img class="modal-hero-bg" id="modalHeroBg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="modal-hero-overlay"></div>
+      <button class="modal-hero-play" id="modalHeroPlay" aria-label="Play video" style="display:none;">
+        <svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="white" fill-opacity="0.92"/><polygon points="32,24 60,40 32,56" fill="#003300"/></svg>
+      </button>
       <button class="modal-hero-close" id="modalClose" aria-label="Close modal">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-
     </div>
 
     <!-- Scrollable Body -->
@@ -963,6 +969,7 @@ const MATERIALS = [
     typeClass: 'type-interview',
     typeBg: '#D1FAE5', typeColor: '#059669',
     typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+    youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     title: 'In Conversation: Sam Olando on Urban Poor Rights and the Right to the City',
     abstract: `Pamoja Trust's Executive Director reflects on 25 years of organising Nairobi's urban poor, the lessons of Mathare and Mukuru, and why social safeguards remain the most contested terrain in Kenyan urban governance.`,
     findings: [
@@ -1123,6 +1130,7 @@ const MATERIALS = [
     typeClass: 'type-interview',
     typeBg: '#D1FAE5', typeColor: '#059669',
     typeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+    youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     title: 'Urban Governance Unpacked: Pamoja Trust on Land, Rights, and the Kenyan City',
     abstract: `A three-part podcast series produced by PASGR in which Pamoja Trust practitioners, community organisers from Muungano wa Wanavijiji, and county government officials discuss land tenure security, social safeguards, and what devolution has — and has not — delivered for Nairobi's urban poor.`,
     findings: [
@@ -1183,13 +1191,32 @@ function closeModal() {
   overlay.classList.remove('is-open');
   document.body.style.overflow = '';
   document.querySelector('.page-frame').removeAttribute('aria-hidden');
+  // Remove any embedded video iframe so it stops playing
+  const existingIframe = document.querySelector('.modal-hero-video');
+  if (existingIframe) existingIframe.remove();
 }
 
 function populateModal(m) {
-  // Hero
+  // Hero — show play button for video types
   const heroEl = document.getElementById('modalHeroBg');
   heroEl.src = `https://images.pexels.com/photos/${PEXELS_IDS[currentIdx]}/pexels-photo-${PEXELS_IDS[currentIdx]}.jpeg?auto=compress&cs=tinysrgb&w=900&h=400&fit=crop`;
   heroEl.alt = m.title;
+  heroEl.style.display = 'block';
+
+  const heroPlayBtn = document.getElementById('modalHeroPlay');
+  heroPlayBtn.style.display = m.youtubeUrl ? 'flex' : 'none';
+  heroPlayBtn.onclick = () => {
+    const match = m.youtubeUrl.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    if (!match) return;
+    const iframe = document.createElement('iframe');
+    iframe.className = 'modal-hero-video';
+    iframe.src = `https://www.youtube.com/embed/${match[1]}?autoplay=1&rel=0`;
+    iframe.allow = 'autoplay; encrypted-media';
+    iframe.allowFullscreen = true;
+    iframe.title = 'Video player';
+    document.getElementById('modalHero').appendChild(iframe);
+    heroPlayBtn.style.display = 'none';
+  };
 
   // Type badge
   const badge = document.getElementById('modalTypeBadge');
@@ -1224,13 +1251,24 @@ function populateModal(m) {
 
   // Tags
   const tagsEl = document.getElementById('modalTagsWrap');
-  tagsEl.innerHTML = m.tags.map(t =>
-    `<button class="modal-tag" onclick="showToast('Filtering by: ${t}')">${t}</button>`
-  ).join('');
+  tagsEl.innerHTML = m.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
 
-  // File info
-  document.getElementById('modalFileInfo').textContent = m.fileInfo;
+  // File info + buttons — swap for video types
+  const isVideo = !!m.youtubeUrl;
+  document.getElementById('modalFileInfo').textContent = isVideo ? 'Available on YouTube' : m.fileInfo;
 
+  const downloadBtn = document.getElementById('modalDownloadBtn');
+  const viewBtn = document.getElementById('modalViewBtn');
+
+  if (isVideo) {
+    downloadBtn.style.display = 'none';
+    viewBtn.innerHTML = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Watch`;
+    viewBtn.onclick = () => window.open(m.youtubeUrl, '_blank', 'noopener');
+  } else {
+    downloadBtn.style.display = '';
+    viewBtn.innerHTML = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View Full Material`;
+    viewBtn.onclick = () => showToast('Opening material…');
+  }
 }
 
 // Close events
